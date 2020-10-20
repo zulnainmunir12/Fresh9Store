@@ -1,14 +1,15 @@
+import 'dart:math';
+
 import 'package:Product/colors.dart';
-import 'package:Product/splash.dart';
-import 'package:dropdownfield/dropdownfield.dart';
+import 'package:Product/sign_in.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Profile extends StatefulWidget {
-  _Profile createState() => _Profile();
+class SignUp extends StatefulWidget {
+  _SignUp createState() => _SignUp();
 }
 
-class _Profile extends State<Profile> {
+class _SignUp extends State<SignUp> {
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _editingController = TextEditingController();
   final TextEditingController _textEditingController = TextEditingController();
@@ -37,13 +38,13 @@ class _Profile extends State<Profile> {
                   height: 20,
                 ),
                 Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
                     FlatButton(
                       onPressed: () {},
                       child: Container(
-                        width: 160,
-                        height: 50,
+                        width: 140,
+                        height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.grey.shade200,
@@ -57,11 +58,11 @@ class _Profile extends State<Profile> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('google_logo.png', height: 25),
+                            Image.asset('google_logo.png', height: 23,),
                             Text(
                               'Google',
                               style: TextStyle(
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             )
@@ -72,8 +73,8 @@ class _Profile extends State<Profile> {
                     FlatButton(
                       onPressed: () {},
                       child: Container(
-                        width: 160,
-                        height: 50,
+                        width: 140,
+                        height: 40,
                         decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(25),
                             color: Colors.grey.shade200,
@@ -87,11 +88,11 @@ class _Profile extends State<Profile> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            Image.asset('fb_logo.png', height: 25),
+                            Image.asset('fb_logo.png', height: 23),
                             Text(
                               'Facebook',
                               style: TextStyle(
-                                  fontSize: 23,
+                                  fontSize: 20,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             )
@@ -120,65 +121,70 @@ class _Profile extends State<Profile> {
                   padding: EdgeInsets.all(25),
                   child: Column(
                     children: [
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20.0),
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Full Name',
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.grey),
-                          prefixIcon: const Icon(
-                            Icons.account_circle_outlined,
-                            color: AppColors.IconColor,
-                          ),
-                          enabledBorder: OutlineInputBorder(
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Full Name',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey),
+                            prefixIcon:
+                               Icon(
+                                Icons.account_circle_outlined,
+                                color: AppColors.IconColor,size: 28,
+                              ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
                               borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
+                                  width: 1, color: Colors.white),
+                            ),
                           ),
+                          cursorColor: AppColors.CursorColor,
                         ),
-                        cursorColor: AppColors.CursorColor,
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20.0),
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Email',
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold, color: Colors.grey),
-                          prefixIcon: const Icon(
-                            Icons.email_outlined,
-                            color: AppColors.IconColor,
-                          ),
-                          enabledBorder: OutlineInputBorder(
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Email',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey),
+                            prefixIcon:
+                            Icon(
+                              Icons.email_outlined,
+                              color: AppColors.IconColor,size: 28,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
                               borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
+                                  width: 1, color: Colors.white),
+                            ),
                           ),
+                          cursorColor: AppColors.CursorColor,
                         ),
-                        cursorColor: AppColors.CursorColor,
                       ),
                       SizedBox(
                         height: 20,
@@ -195,213 +201,241 @@ class _Profile extends State<Profile> {
                       SizedBox(
                         height: 20,
                       ),
-                      TextField(
-                        controller: _controller,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Choose your City',
-                          prefixIcon: Icon(
-                            Icons.apartment,
-                            color: AppColors.IconColor,
-                          ),
-                          suffixIcon: PopupMenuButton<String>(
-                            icon: const Icon(
-                              Icons.arrow_drop_down,
-                              color: AppColors.IconColor,
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          controller: _controller,
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Choose your City',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey),
+                            prefixIcon:
+                            Icon(
+                              Icons.apartment,
+                              color: AppColors.IconColor,size: 28,
                             ),
-                            onSelected: (String value) {
-                              _controller.text = value;
-                            },
-                            itemBuilder: (BuildContext context) {
-                              return cities
-                                  .map<PopupMenuItem<String>>((String value) {
-                                return new PopupMenuItem(
-                                    child: new Text(value), value: value);
-                              }).toList();
-                            },
-                          ),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
-                          ),
-                        ),
-                        cursorColor: AppColors.CursorColor,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        controller: _editingController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Choose your Area',
-                          prefixIcon: Icon(
-                            Icons.home_sharp,
-                            color: AppColors.IconColor,
-                          ),
-                          suffixIcon: PopupMenuButton<String>(
-                            icon: const Icon(
-                              Icons.arrow_drop_down,
-                              color: AppColors.IconColor,
+                            suffixIcon: PopupMenuButton<String>(
+                              icon: const Icon(
+                                Icons.arrow_drop_down,
+                                color: AppColors.IconColor,
+                              ),
+                              onSelected: (String value) {
+                                _controller.text = value;
+                              },
+                              itemBuilder: (BuildContext context) {
+                                return cities
+                                    .map<PopupMenuItem<String>>((String value) {
+                                  return new PopupMenuItem(
+                                      child: new Text(value), value: value);
+                                }).toList();
+                              },
                             ),
-                            onSelected: (String value) {
-                              _editingController.text = value;
-                            },
-                            itemBuilder: (BuildContext context) {
-                              return area
-                                  .map<PopupMenuItem<String>>((String value) {
-                                return new PopupMenuItem(
-                                    child: new Text(value), value: value);
-                              }).toList();
-                            },
-                          ),
-                          enabledBorder: OutlineInputBorder(
+
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
                               borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
-                          ),
-                        ),
-                        cursorColor: AppColors.CursorColor,
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      TextField(
-                        controller: _textEditingController,
-                        decoration: InputDecoration(
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(50),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Location',
-                          prefixIcon: Icon(
-                            Icons.location_on_outlined,
-                            color: AppColors.IconColor,
-                          ),
-                          suffixIcon: PopupMenuButton<String>(
-                            icon: const Icon(
-                              Icons.arrow_drop_down,
-                              color: AppColors.IconColor,
+                                  width: 1, color: Colors.white),
                             ),
-                            onSelected: (String value) {
-                              _textEditingController.text = value;
-                            },
-                            itemBuilder: (BuildContext context) {
-                              return location
-                                  .map<PopupMenuItem<String>>((String value) {
-                                return new PopupMenuItem(
-                                    child: new Text(value), value: value);
-                              }).toList();
-                            },
                           ),
-                          enabledBorder: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
-                          ),
+                          cursorColor: AppColors.CursorColor,
                         ),
-                        cursorColor: AppColors.CursorColor,
+                      ),
+
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          controller: _editingController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Choose your Area',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey),
+                            prefixIcon:
+                            Icon(
+                              Icons.home_sharp,
+                              color: AppColors.IconColor,size: 28,
+                            ),
+                            suffixIcon: PopupMenuButton<String>(
+                              icon: const Icon(
+                                Icons.arrow_drop_down,
+                                color: AppColors.IconColor,
+                              ),
+                              onSelected: (String value) {
+                                _editingController.text = value;
+                              },
+                              itemBuilder: (BuildContext context) {
+                                return area
+                                    .map<PopupMenuItem<String>>((String value) {
+                                  return new PopupMenuItem(
+                                      child: new Text(value), value: value);
+                                }).toList();
+                              },
+                            ),
+
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                              borderSide: BorderSide(
+                                  width: 1, color: Colors.white),
+                            ),
+                          ),
+                          cursorColor: AppColors.CursorColor,
+                        ),
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20.0),
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'House # 528 Block A st 2',
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.withOpacity(0.5)),
-                          prefixIcon: const Icon(
-                            Icons.home,
-                            color: AppColors.IconColor,
-                          ),
-                          enabledBorder: OutlineInputBorder(
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          controller: _textEditingController,
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Location',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey),
+                            prefixIcon:
+                            Icon(
+                              Icons.location_on_outlined,
+                              color: AppColors.IconColor,size: 28,
+                            ),
+                            suffixIcon: PopupMenuButton<String>(
+                              icon: const Icon(
+                                Icons.arrow_drop_down,
+                                color: AppColors.IconColor,
+                              ),
+                              onSelected: (String value) {
+                                _controller.text = value;
+                              },
+                              itemBuilder: (BuildContext context) {
+                                return location
+                                    .map<PopupMenuItem<String>>((String value) {
+                                  return new PopupMenuItem(
+                                      child: new Text(value), value: value);
+                                }).toList();
+                              },
+                            ),
+
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
                               borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
+                                  width: 1, color: Colors.white),
+                            ),
                           ),
+                          cursorColor: AppColors.CursorColor,
                         ),
-                        cursorColor: AppColors.CursorColor,
                       ),
                       SizedBox(
                         height: 20,
                       ),
-                      TextField(
-                        decoration: InputDecoration(
-                          contentPadding:
-                              const EdgeInsets.symmetric(horizontal: 20.0),
-                          fillColor: Colors.white,
-                          border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(40),
-                            borderSide: new BorderSide(color: Colors.white),
-                          ),
-                          hintText: 'Address Instruction > Upper portion etc',
-                          hintStyle: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.grey.withOpacity(0.5)),
-                          prefixIcon: const Icon(
-                            Icons.all_inbox_rounded,
-                            color: AppColors.IconColor,
-                          ),
-                          enabledBorder: OutlineInputBorder(
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'House # 528 Block A st 2',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey.withOpacity(0.5)),
+                            prefixIcon:
+                            Icon(
+                              Icons.home,
+                              color: AppColors.IconColor,size: 28,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
                               borderSide: BorderSide(
-                                  color: Colors.black.withOpacity(0.5),
-                                  width: 1),
-                              borderRadius: BorderRadius.circular(25)),
-                          focusedBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.all(Radius.circular(25)),
-                            borderSide: BorderSide(
-                                width: 1, color: Colors.grey.shade300),
+                                  width: 1, color: Colors.white),
+                            ),
                           ),
+                          cursorColor: AppColors.CursorColor,
                         ),
-                        cursorColor: AppColors.CursorColor,
+                      ),
+                      SizedBox(
+                        height: 20,
+                      ),
+                      Material(
+                        elevation: 7.0,
+                        shadowColor: Colors.black,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(40.0))),
+                        child: TextField(
+                          decoration: InputDecoration(
+                            contentPadding:
+                            const EdgeInsets.symmetric(vertical:18.0),
+                            fillColor: Colors.white,
+                            hintText: 'Add Instruction > Upper portion etc',
+                            hintStyle: TextStyle(
+                                fontWeight: FontWeight.bold, color: Colors.grey.withOpacity(0.5)),
+                            prefixIcon:
+                            Icon(
+                              Icons.all_inbox_rounded,
+                              color: AppColors.IconColor,size: 28,
+                            ),
+                            enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                    color: Colors.white.withOpacity(0.5),
+                                    width: 1),
+                                borderRadius: BorderRadius.circular(25)),
+                            focusedBorder: OutlineInputBorder(
+                              borderRadius: BorderRadius.all(Radius.circular(25)),
+                              borderSide: BorderSide(
+                                  width: 1, color: Colors.white),
+                            ),
+                          ),
+                          cursorColor: AppColors.CursorColor,
+                        ),
                       ),
                     ],
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsets.all(25),
+                  padding: EdgeInsets.all(15),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       FlatButton(
-                        onPressed: () {},
+                        onPressed: () {
+                        },
                         child: Container(
-                          width: 90,
+                          width: 75,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
@@ -417,7 +451,7 @@ class _Profile extends State<Profile> {
                             child: Text(
                               'Home',
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             ),
@@ -427,7 +461,7 @@ class _Profile extends State<Profile> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          width: 90,
+                          width: 75,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
@@ -443,7 +477,7 @@ class _Profile extends State<Profile> {
                             child: Text(
                               'Work',
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             ),
@@ -453,7 +487,7 @@ class _Profile extends State<Profile> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          width: 90,
+                          width: 75,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
@@ -469,7 +503,7 @@ class _Profile extends State<Profile> {
                             child: Text(
                               'Other',
                               style: TextStyle(
-                                  fontSize: 18,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.w500,
                                   color: Colors.black),
                             ),
@@ -492,8 +526,9 @@ class _Profile extends State<Profile> {
                             BoxShadow(
                                 color: Colors.black.withOpacity(0.2),
                                 // spreadRadius: 5,
-                                blurRadius: 3,
-                                offset: Offset(0, 3))
+                                blurRadius: 4,
+                                offset: Offset(0, 0),
+                            spreadRadius: 2)
                           ]),
                       child: Center(
                         child: Text(
@@ -502,7 +537,9 @@ class _Profile extends State<Profile> {
                         ),
                       ),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context)=>SignIn()));
+                    },
                   ),
                 )
               ],
