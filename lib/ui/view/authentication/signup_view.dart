@@ -159,58 +159,6 @@ class _SignUpViewState extends State<SignUpView> {
                       _dropDown(area, 'Choose your Area', Icons.home),
                       VerticalSpacing(height: 0.03),
                       _dropDown(location, 'Location', Icons.location_on_outlined,),
-                      // Material(
-                      //   elevation: 7.0,
-                      //   shadowColor: Colors.black,
-                      //   shape: RoundedRectangleBorder(
-                      //       borderRadius:
-                      //           BorderRadius.all(Radius.circular(40.0))),
-                      //   child: TextField(
-                      //     controller: _textEditingController,
-                      //     decoration: InputDecoration(
-                      //       contentPadding:
-                      //           const EdgeInsets.symmetric(vertical: 18.0),
-                      //       fillColor: Colors.white,
-                      //       hintText: 'Location',
-                      //       hintStyle: TextStyle(
-                      //           fontWeight: FontWeight.bold,
-                      //           color: Colors.grey),
-                      //       prefixIcon: Icon(
-                      //         Icons.location_on_outlined,
-                      //         color: AppColor.primaryColor,
-                      //         size: 28,
-                      //       ),
-                      //       suffixIcon: PopupMenuButton<String>(
-                      //         icon: const Icon(
-                      //           Icons.arrow_drop_down,
-                      //           color: AppColor.primaryColor,
-                      //         ),
-                      //         onSelected: (String value) {
-                      //           _controller.text = value;
-                      //         },
-                      //         itemBuilder: (BuildContext context) {
-                      //           return location
-                      //               .map<PopupMenuItem<String>>((String value) {
-                      //             return new PopupMenuItem(
-                      //                 child: new Text(value), value: value);
-                      //           }).toList();
-                      //         },
-                      //       ),
-                      //       enabledBorder: OutlineInputBorder(
-                      //           borderSide: BorderSide(
-                      //               color: Colors.white.withOpacity(0.5),
-                      //               width: 1),
-                      //           borderRadius: BorderRadius.circular(25)),
-                      //       focusedBorder: OutlineInputBorder(
-                      //         borderRadius:
-                      //             BorderRadius.all(Radius.circular(25)),
-                      //         borderSide:
-                      //             BorderSide(width: 1, color: Colors.white),
-                      //       ),
-                      //     ),
-                      //     cursorColor: AppColor.blackColor,
-                      //   ),
-                      // ),
                       VerticalSpacing(height: 0.03,),
                       Material(
                         elevation: 7.0,
@@ -286,19 +234,17 @@ class _SignUpViewState extends State<SignUpView> {
                     ],
                   ),
                 ),
-                Padding(
-                  padding: EdgeInsets.all(15),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     children: [
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          width: 75,
+                          width: MediaQuery.of(context).size.width*0.2,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
-                              color: Colors.grey.shade200,
+                              color: AppColor.whiteColor,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -310,9 +256,9 @@ class _SignUpViewState extends State<SignUpView> {
                             child: Text(
                               'Home',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: FontSize.xl,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.black),
+                                  color: AppColor.blackColor),
                             ),
                           ),
                         ),
@@ -320,11 +266,11 @@ class _SignUpViewState extends State<SignUpView> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          width: 75,
+                          width: MediaQuery.of(context).size.width*0.2,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
-                              color: Colors.grey.shade200,
+                              color: AppColor.whiteColor,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -336,9 +282,9 @@ class _SignUpViewState extends State<SignUpView> {
                             child: Text(
                               'Work',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: FontSize.xl,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.black),
+                                  color: AppColor.blackColor),
                             ),
                           ),
                         ),
@@ -346,11 +292,11 @@ class _SignUpViewState extends State<SignUpView> {
                       FlatButton(
                         onPressed: () {},
                         child: Container(
-                          width: 75,
+                          width: MediaQuery.of(context).size.width*0.2,
                           height: 40,
                           decoration: BoxDecoration(
                               borderRadius: BorderRadius.circular(17),
-                              color: Colors.grey.shade200,
+                              color: AppColor.whiteColor,
                               boxShadow: [
                                 BoxShadow(
                                     color: Colors.black.withOpacity(0.2),
@@ -362,16 +308,16 @@ class _SignUpViewState extends State<SignUpView> {
                             child: Text(
                               'Other',
                               style: TextStyle(
-                                  fontSize: 16,
+                                  fontSize: FontSize.xl,
                                   fontWeight: FontWeight.w500,
-                                  color: Colors.black),
+                                  color: AppColor.blackColor),
                             ),
                           ),
                         ),
                       ),
                     ],
                   ),
-                ),
+
                 Padding(
                   padding: EdgeInsets.all(25),
                   child: FlatButton(
@@ -391,16 +337,13 @@ class _SignUpViewState extends State<SignUpView> {
                           ]),
                       child: Center(
                         child: Text(
-                          'SignUp',
+                          'SIGN UP',
                           style: TextStyle(color: Colors.white, fontSize: 18),
                         ),
                       ),
                     ),
                     onPressed: () {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => LandingView()));
+                      _navigationService.navigateToAndClearAll(NavigationRouter.landingScreen);
                     },
                   ),
                 )

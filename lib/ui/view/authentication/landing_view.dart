@@ -86,7 +86,7 @@ class _LandingViewState extends State<LandingView> {
     return MyButton(
       text: 'SignUp',
       width: MediaQuery.of(context).size.width * 0.8,
-      onPressed: () =>_navigationService.navigateTo(NavigationRouter.signUpScreen),
+      onPressed: () =>_navigationService.navigateTo(NavigationRouter.enterNumberScreen),
     );
   }
 
