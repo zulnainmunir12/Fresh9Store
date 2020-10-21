@@ -1,3 +1,4 @@
+import 'package:Product/ui/view/authentication/enter_number.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/view/splash_screen_view.dart';
 import 'package:Product/ui/view/suggest_view.dart';
@@ -10,6 +11,7 @@ class NavigationRouter {
   static const String landingScreen = "landingScreen";
   static const String signInScreen = "signInScreen";
   static const String suggestScreen = "suggestScreen";
+  static const String enterNumberScreen = "EnterNumberScreen";
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -28,6 +30,10 @@ class NavigationRouter {
       case suggestScreen:
         return MaterialPageRoute(
           builder: (_) => SuggestView(),
+        );
+      case enterNumberScreen:
+        return MaterialPageRoute(
+          builder: (_) => EnterNumber(),
         );
       default:
         return MaterialPageRoute(

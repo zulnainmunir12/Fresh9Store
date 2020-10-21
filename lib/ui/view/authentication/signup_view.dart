@@ -1,6 +1,12 @@
+import 'package:Product/core/service/navigation_service.dart';
+import 'package:Product/locator.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
+import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/view/authentication/landing_view.dart';
+import 'package:Product/ui/widget/button.dart';
 import 'package:Product/ui/widget/my_text.dart';
+import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/widget/horizontal_spacing.dart';
@@ -8,8 +14,8 @@ import 'package:Product/ui/widget/horizontal_spacing.dart';
 class SignUpView extends StatefulWidget {
   _SignUpViewState createState() => _SignUpViewState();
 }
-
 class _SignUpViewState extends State<SignUpView> {
+  final NavigationService _navigationService = locator<NavigationService>();
   final TextEditingController _controller = TextEditingController();
   final TextEditingController _editingController = TextEditingController();
   final TextEditingController _textEditingController = TextEditingController();
@@ -26,87 +32,20 @@ class _SignUpViewState extends State<SignUpView> {
           Container(
             child: Column(
               children: [
-                SizedBox(
-                  height: 30,
+                VerticalSpacing(
+                  height: 0.03,
                 ),
                 Center(
                     child: Image.asset(
                   'assets/image/logo.png',
                   height: 90,
                 )),
-                SizedBox(
-                  height: 20,
+                VerticalSpacing(
+                  height: 0.03,
                 ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceAround,
-                  children: [
-                    FlatButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 140,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.grey.shade200,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  // spreadRadius: 5,
-                                  blurRadius: 3,
-                                  offset: Offset(0, 4))
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset(
-                              'assets/image/google_logo.png',
-                              height: 23,
-                            ),
-                            Text(
-                              'Google',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black),
-                            )
-                          ],
-                        ),
-                      ),
-                    ),
-                    FlatButton(
-                      onPressed: () {},
-                      child: Container(
-                        width: 140,
-                        height: 40,
-                        decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(25),
-                            color: Colors.grey.shade200,
-                            boxShadow: [
-                              BoxShadow(
-                                  color: Colors.black.withOpacity(0.2),
-                                  // spreadRadius: 5,
-                                  blurRadius: 3,
-                                  offset: Offset(0, 4))
-                            ]),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                          children: [
-                            Image.asset('assets/image/fb_logo.png', height: 23),
-                            Text(
-                              'Facebook',
-                              style: TextStyle(
-                                  fontSize: 20,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.black),
-                            )
-                          ],
-                        ),
-                      ),
-                    )
-                  ],
-                ),
-                SizedBox(
-                  height: 20,
+               _socialMediaButtons(),
+                VerticalSpacing(
+                  height: 0.03,
                 ),
                 Center(
                   child: Text(
@@ -117,8 +56,8 @@ class _SignUpViewState extends State<SignUpView> {
                         fontWeight: FontWeight.w500),
                   ),
                 ),
-                SizedBox(
-                  height: 20,
+                VerticalSpacing(
+                  height: 0.03,
                 ),
                 Padding(
                   padding: EdgeInsets.all(25),
@@ -159,8 +98,8 @@ class _SignUpViewState extends State<SignUpView> {
                           cursorColor: AppColor.blackColor,
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      VerticalSpacing(
+                        height: 0.03,
                       ),
                       Material(
                         elevation: 7.0,
@@ -197,8 +136,8 @@ class _SignUpViewState extends State<SignUpView> {
                           cursorColor: AppColor.blackColor,
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      VerticalSpacing(
+                        height: 0.03,
                       ),
                       Center(
                         child: Text(
@@ -209,175 +148,70 @@ class _SignUpViewState extends State<SignUpView> {
                               fontWeight: FontWeight.w500),
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
+                      VerticalSpacing(
+                        height: 0.03,
                       ),
-                      _dropDown(cities, 'Choose your City', Icons.apartment),
-                      Material(
-                        elevation: 7.0,
-                        shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(40.0))),
-                        child: TextField(
-                          controller: _controller,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 18.0),
-                            fillColor: Colors.white,
-                            hintText: 'Choose your City',
-                            hintStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.apartment,
-                              color: AppColor.primaryColor,
-                              size: 28,
-                            ),
-                            suffixIcon: PopupMenuButton<String>(
-                              icon: const Icon(
-                                Icons.arrow_drop_down,
-                                color: AppColor.primaryColor,
-                              ),
-                              onSelected: (String value) {
-                                _controller.text = value;
-                              },
-                              itemBuilder: (BuildContext context) {
-                                return cities
-                                    .map<PopupMenuItem<String>>((String value) {
-                                  return new PopupMenuItem(
-                                      child: new Text(value), value: value);
-                                }).toList();
-                              },
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(0.5),
-                                    width: 1),
-                                borderRadius: BorderRadius.circular(25)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25)),
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.white),
-                            ),
-                          ),
-                          cursorColor: AppColor.blackColor,
-                        ),
+                      _dropDown(cities, 'Choose your City', Icons.apartment,),
+                      //
+                      VerticalSpacing(
+                        height: 0.03,
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Material(
-                        elevation: 7.0,
-                        shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(40.0))),
-                        child: TextField(
-                          controller: _editingController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 18.0),
-                            fillColor: Colors.white,
-                            hintText: 'Choose your Area',
-                            hintStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.home_sharp,
-                              color: AppColor.primaryColor,
-                              size: 28,
-                            ),
-                            suffixIcon: PopupMenuButton<String>(
-                              icon: const Icon(
-                                Icons.arrow_drop_down,
-                                color: AppColor.primaryColor,
-                              ),
-                              onSelected: (String value) {
-                                _editingController.text = value;
-                              },
-                              itemBuilder: (BuildContext context) {
-                                return area
-                                    .map<PopupMenuItem<String>>((String value) {
-                                  return new PopupMenuItem(
-                                      child: new Text(value), value: value);
-                                }).toList();
-                              },
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(0.5),
-                                    width: 1),
-                                borderRadius: BorderRadius.circular(25)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25)),
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.white),
-                            ),
-                          ),
-                          cursorColor: AppColor.blackColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                      Material(
-                        elevation: 7.0,
-                        shadowColor: Colors.black,
-                        shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.all(Radius.circular(40.0))),
-                        child: TextField(
-                          controller: _textEditingController,
-                          decoration: InputDecoration(
-                            contentPadding:
-                                const EdgeInsets.symmetric(vertical: 18.0),
-                            fillColor: Colors.white,
-                            hintText: 'Location',
-                            hintStyle: TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.grey),
-                            prefixIcon: Icon(
-                              Icons.location_on_outlined,
-                              color: AppColor.primaryColor,
-                              size: 28,
-                            ),
-                            suffixIcon: PopupMenuButton<String>(
-                              icon: const Icon(
-                                Icons.arrow_drop_down,
-                                color: AppColor.primaryColor,
-                              ),
-                              onSelected: (String value) {
-                                _controller.text = value;
-                              },
-                              itemBuilder: (BuildContext context) {
-                                return location
-                                    .map<PopupMenuItem<String>>((String value) {
-                                  return new PopupMenuItem(
-                                      child: new Text(value), value: value);
-                                }).toList();
-                              },
-                            ),
-                            enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                    color: Colors.white.withOpacity(0.5),
-                                    width: 1),
-                                borderRadius: BorderRadius.circular(25)),
-                            focusedBorder: OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(25)),
-                              borderSide:
-                                  BorderSide(width: 1, color: Colors.white),
-                            ),
-                          ),
-                          cursorColor: AppColor.blackColor,
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      _dropDown(area, 'Choose your Area', Icons.home),
+                      VerticalSpacing(height: 0.03),
+                      _dropDown(location, 'Location', Icons.location_on_outlined,),
+                      // Material(
+                      //   elevation: 7.0,
+                      //   shadowColor: Colors.black,
+                      //   shape: RoundedRectangleBorder(
+                      //       borderRadius:
+                      //           BorderRadius.all(Radius.circular(40.0))),
+                      //   child: TextField(
+                      //     controller: _textEditingController,
+                      //     decoration: InputDecoration(
+                      //       contentPadding:
+                      //           const EdgeInsets.symmetric(vertical: 18.0),
+                      //       fillColor: Colors.white,
+                      //       hintText: 'Location',
+                      //       hintStyle: TextStyle(
+                      //           fontWeight: FontWeight.bold,
+                      //           color: Colors.grey),
+                      //       prefixIcon: Icon(
+                      //         Icons.location_on_outlined,
+                      //         color: AppColor.primaryColor,
+                      //         size: 28,
+                      //       ),
+                      //       suffixIcon: PopupMenuButton<String>(
+                      //         icon: const Icon(
+                      //           Icons.arrow_drop_down,
+                      //           color: AppColor.primaryColor,
+                      //         ),
+                      //         onSelected: (String value) {
+                      //           _controller.text = value;
+                      //         },
+                      //         itemBuilder: (BuildContext context) {
+                      //           return location
+                      //               .map<PopupMenuItem<String>>((String value) {
+                      //             return new PopupMenuItem(
+                      //                 child: new Text(value), value: value);
+                      //           }).toList();
+                      //         },
+                      //       ),
+                      //       enabledBorder: OutlineInputBorder(
+                      //           borderSide: BorderSide(
+                      //               color: Colors.white.withOpacity(0.5),
+                      //               width: 1),
+                      //           borderRadius: BorderRadius.circular(25)),
+                      //       focusedBorder: OutlineInputBorder(
+                      //         borderRadius:
+                      //             BorderRadius.all(Radius.circular(25)),
+                      //         borderSide:
+                      //             BorderSide(width: 1, color: Colors.white),
+                      //       ),
+                      //     ),
+                      //     cursorColor: AppColor.blackColor,
+                      //   ),
+                      // ),
+                      VerticalSpacing(height: 0.03,),
                       Material(
                         elevation: 7.0,
                         shadowColor: Colors.black,
@@ -413,9 +247,7 @@ class _SignUpViewState extends State<SignUpView> {
                           cursorColor: AppColor.blackColor,
                         ),
                       ),
-                      SizedBox(
-                        height: 20,
-                      ),
+                      VerticalSpacing(height: 0.03),
                       Material(
                         elevation: 7.0,
                         shadowColor: Colors.black,
@@ -586,7 +418,7 @@ class _SignUpViewState extends State<SignUpView> {
         shape: RoundedRectangleBorder(
           side: BorderSide(
               width: 0.5, style: BorderStyle.solid, color: Colors.white),
-          borderRadius: BorderRadius.all(Radius.circular(20)),
+          borderRadius: BorderRadius.all(Radius.circular(30)),
         ),
         elevation: 7.0,
         child: Container(
@@ -635,6 +467,25 @@ class _SignUpViewState extends State<SignUpView> {
                 )),
           ),
         ));
+  }
+  _socialMediaButtons() {
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+      children: [
+        SocialMediaButton(
+          onPressed: () =>_navigationService.navigateTo(NavigationRouter.enterNumberScreen),
+          text: "Google",
+          image: 'assets/image/google_logo.png',
+          width: MediaQuery.of(context).size.shortestSide * 0.33,
+        ),
+        SocialMediaButton(
+          onPressed: () =>_navigationService.navigateTo(NavigationRouter.enterNumberScreen),
+          text: "Facebook",
+          image: 'assets/image/fb_logo.png',
+          width: MediaQuery.of(context).size.shortestSide * 0.33,
+        ),
+      ],
+    );
   }
 }
 // String selectCity ='';

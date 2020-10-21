@@ -113,13 +113,13 @@ class _LandingViewState extends State<LandingView> {
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         SocialMediaButton(
-          onPressed: () {},
+          onPressed: () =>_navigationService.navigateTo(NavigationRouter.enterNumberScreen),
           text: "Google",
           image: 'assets/image/google_logo.png',
           width: MediaQuery.of(context).size.shortestSide * 0.33,
         ),
         SocialMediaButton(
-          onPressed: () {},
+          onPressed: () =>_navigationService.navigateTo(NavigationRouter.enterNumberScreen),
           text: "Facebook",
           image: 'assets/image/fb_logo.png',
           width: MediaQuery.of(context).size.shortestSide * 0.33,
