@@ -1,20 +1,21 @@
 import 'dart:math';
 
-import 'package:Product/colors.dart';
+import 'package:Product/ui/shared/app_colors.dart';
 import 'package:flutter/material.dart';
 
-class Suggest extends StatefulWidget {
-  _Suggest createState() => _Suggest();
+class SuggestView extends StatefulWidget {
+  _SuggestViewState createState() => _SuggestViewState();
 }
 
-class _Suggest extends State<Suggest> {
+class _SuggestViewState extends State<SuggestView> {
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.white,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back, color: AppColors.IconColor),
+          icon: Icon(Icons.arrow_back, color: AppColor.primaryColor),
           onPressed: () {},
         ),
         title: Text(
@@ -50,7 +51,7 @@ class _Suggest extends State<Suggest> {
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                       child: Icon(
                         Icons.wb_incandescent_outlined,
-                        color: AppColors.IconColor,size: 28,
+                        color: AppColor.primaryColor,size: 28,
                       ),),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -63,7 +64,7 @@ class _Suggest extends State<Suggest> {
                             width: 1, color: Colors.white),
                       ),
                     ),
-                    cursorColor: AppColors.CursorColor,
+                    cursorColor: AppColor.blackColor,
                   ),
                 ),
                 SizedBox(height: 25,),
@@ -82,7 +83,7 @@ class _Suggest extends State<Suggest> {
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,
-                          color: AppColors.IconColor,size: 28,
+                          color: AppColor.primaryColor,size: 28,
                         ),),
                       enabledBorder: OutlineInputBorder(
                         borderSide: BorderSide(
@@ -95,7 +96,7 @@ class _Suggest extends State<Suggest> {
                              color: Colors.white),
                       ),
                     ),
-                    cursorColor: AppColors.CursorColor,
+                    cursorColor: AppColor.blackColor,
                   ),
                 ),
                 SizedBox(height: 25,),
@@ -114,7 +115,7 @@ class _Suggest extends State<Suggest> {
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,
-                          color: AppColors.IconColor,size: 28,
+                          color: AppColor.primaryColor,size: 28,
                         ),),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -127,7 +128,7 @@ class _Suggest extends State<Suggest> {
                             color: Colors.white),
                       ),
                     ),
-                    cursorColor: AppColors.CursorColor,
+                    cursorColor: AppColor.blackColor,
                   ),
                 ),
                 SizedBox(height: 25,),
@@ -146,7 +147,7 @@ class _Suggest extends State<Suggest> {
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,
-                          color: AppColors.IconColor,size: 28,
+                          color: AppColor.primaryColor,size: 28,
                         ),),
                       enabledBorder: OutlineInputBorder(
                           borderSide: BorderSide(
@@ -159,7 +160,7 @@ class _Suggest extends State<Suggest> {
                             color: Colors.white),
                       ),
                     ),
-                    cursorColor: AppColors.CursorColor,
+                    cursorColor: AppColor.blackColor,
                   ),
                 ),
               ],
@@ -178,7 +179,7 @@ class _Suggest extends State<Suggest> {
                       shadowColor: Colors.black,
                       child: MaterialButton(
                         onPressed: (){},
-                        color: AppColors.IconColor,
+                        color: AppColor.primaryColor,
                         materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
                         child: Text('Submit',style: TextStyle(color: Colors.white,
                             fontSize: 18),),
