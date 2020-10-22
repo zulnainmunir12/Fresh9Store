@@ -96,7 +96,7 @@ class _LandingViewState extends State<LandingView> {
         child: OutlineButton(
           shape: new RoundedRectangleBorder(
               borderRadius: new BorderRadius.circular(30.0)),
-          onPressed: ()=>_navigationService.navigateTo(NavigationRouter.screen1),
+          onPressed: ()=>_navigationService.navigateTo(NavigationRouter.appServices),
           child: Text(
             'Skip',
             style: TextStyle(

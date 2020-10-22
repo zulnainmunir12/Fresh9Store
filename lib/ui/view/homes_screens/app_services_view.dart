@@ -1,3 +1,6 @@
+import 'package:Product/core/service/navigation_service.dart';
+import 'package:Product/locator.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/widget/horizontal_spacing.dart';
@@ -5,11 +8,12 @@ import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class Screen1 extends StatefulWidget {
-  _Screen1 createState() => _Screen1();
+class AppServices extends StatefulWidget {
+  _AppServices createState() => _AppServices();
 }
 
-class _Screen1 extends State<Screen1> {
+class _AppServices extends State<AppServices> {
+  final NavigationService _navigationService = locator<NavigationService>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,25 +21,7 @@ class _Screen1 extends State<Screen1> {
       ListView(children: [
         Column(
           children: [
-            VerticalSpacing(height: 0.05),
-            // Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Material(
-            //       elevation: 7,
-            //       color: Colors.black,
-            //       shape: RoundedRectangleBorder(
-            //         borderRadius: BorderRadius.all(Radius.circular(30))
-            //       ),
-            //       child: Container(
-            //         width: MediaQuery.of(context).size.width/1.8,
-            //         height: MediaQuery.of(context).size.height/1.8,
-            //         decoration: BoxDecoration(
-            //           color: Colors.red,
-            //           borderRadius: BorderRadius.circular(30)
-            //         ),
-            //       ),
-            //     )
-            //   ],)
+            VerticalSpacing(height: 0.03),
             _screenContainer()
           ],
         ),
@@ -148,7 +134,7 @@ class _Screen1 extends State<Screen1> {
               ),
               child: Container(
                 width: MediaQuery.of(context).size.shortestSide * 0.47,
-                height: MediaQuery.of(context).size.shortestSide * 0.86,
+                height: MediaQuery.of(context).size.shortestSide * 0.84,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30)
@@ -188,7 +174,7 @@ class _Screen1 extends State<Screen1> {
               ),
               child: Container(
                 width: MediaQuery.of(context).size.shortestSide * 0.45,
-                height: MediaQuery.of(context).size.shortestSide * 0.90,
+                height: MediaQuery.of(context).size.shortestSide * 0.84,
                 decoration: BoxDecoration(
                     color: Colors.white,
                     borderRadius: BorderRadius.circular(30)
@@ -201,8 +187,8 @@ class _Screen1 extends State<Screen1> {
                       Image.asset('assets/image/services.png'),
                       VerticalSpacing(height: 0.001),
                       Container(
-                        margin: EdgeInsets.only(top: 21.0, bottom: 10.0,right: 50),
-                        child: Text('Services',style: TextStyle(
+                        margin: EdgeInsets.only(top: 10.0, bottom: 10.0,right: 50),
+                        child:  Text('Services',style: TextStyle(
                             fontSize: FontSize.xxxl
                             ,color: AppColor.primaryColor,fontWeight: FontWeight.bold
                         ),),),
@@ -213,7 +199,7 @@ class _Screen1 extends State<Screen1> {
                             ,color: AppColor.darkGrey
                         ),),),
                       Container(
-                          margin: EdgeInsets.only(top: 42.0, bottom: 10.0,right: 75),
+                          margin: EdgeInsets.only(top: 30.0, bottom: 10.0,right: 75),
                           child: _serviceButton()),
                     ],
                   ),
@@ -226,7 +212,8 @@ class _Screen1 extends State<Screen1> {
     );
   }
   _shopButton(){
-    return FlatButton(onPressed: (){}, child: Text('Shop now',style: TextStyle(
+    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.fresh9View)
+        , child: Text('Shop now',style: TextStyle(
       fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
     ),));
   }
@@ -236,8 +223,10 @@ class _Screen1 extends State<Screen1> {
     ),));
   }
   _serviceButton(){
-    return FlatButton(onPressed: (){}, child: Text('Service now',style: TextStyle(
+    return FlatButton(onPressed: (){}, child:
+    Text('Service now',style: TextStyle(
         fontSize: FontSize.m,color: AppColor.primaryColor,fontWeight: FontWeight.bold
-    ),));
+    ),)
+    );
   }
 }
