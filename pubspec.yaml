@@ -53,6 +53,10 @@ flutter:
   assets:
     - assets/image/
     - assets/splash.mp4
+    - assets/image/fresh9_store.png
+    - assets/image/other_shops.png
+    - assets/image/restarunt.png
+    - assets/image/services.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see

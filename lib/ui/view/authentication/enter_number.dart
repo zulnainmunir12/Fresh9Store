@@ -1,5 +1,4 @@
 import 'dart:math';
-
 import 'package:Product/core/service/navigation_service.dart';
 import 'package:Product/locator.dart';
 import 'package:Product/ui/router.dart';
@@ -54,11 +53,6 @@ class _EnterNumber extends State<EnterNumber> {
                         fontWeight: FontWeight.w500,
                         fontSize: FontSize.xxl,
                         color: AppColor.normalGrey),
-//                    suffix: Icon(
-//                      Icons.arrow_circle_down_outlined,
-//                      color: AppColor.primaryColor,
-//                    ),
-
                     suffixIcon: Transform.rotate(
                         angle: 180 * pi / -8,
                         child: IconButton(
@@ -106,7 +100,6 @@ class _EnterNumber extends State<EnterNumber> {
       height: 140,
     );
   }
-
   _image() {
     return Center(
       child: Image.asset(
