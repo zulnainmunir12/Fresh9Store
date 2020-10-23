@@ -26,4 +26,5 @@ class AppColor {
   static const Color blueColor = Color(0xFF3B5998);
 
   static const Color yellowColor = Colors.yellow;
+  static const Color lawnGreen = Color(0x33FF33);
 }

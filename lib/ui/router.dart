@@ -1,6 +1,7 @@
 import 'package:Product/ui/view/authentication/enter_number_view.dart';
 import 'package:Product/ui/view/homes_screens/app_services_view.dart';
 import 'package:Product/ui/view/homes_screens/fresh9_home_view.dart';
+import 'package:Product/ui/view/homes_screens/restaurant_home_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/view/splash_screen_view.dart';
 import 'package:Product/ui/view/suggest_view.dart';
@@ -16,6 +17,7 @@ class NavigationRouter {
   static const String enterNumberScreen = "EnterNumberScreen";
   static const String appServices = "AppServices";
   static const String fresh9View = "Fresh9View";
+  static const String restaurantView ='RestaurantView';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -43,6 +45,8 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>AppServices());
       case fresh9View:
         return MaterialPageRoute(builder: (_)=>Fresh9HomeView());
+      case restaurantView:
+        return MaterialPageRoute(builder: (_)=>RestaurantView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

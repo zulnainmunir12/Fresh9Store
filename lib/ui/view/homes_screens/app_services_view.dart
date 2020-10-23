@@ -217,8 +217,14 @@ class _AppServices extends State<AppServices> {
       fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
     ),));
   }
+  _otherShopButton(){
+    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.fresh9View)
+        , child: Text('Shop now',style: TextStyle(
+            fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
+        ),));
+  }
   _orderButton(){
-    return FlatButton(onPressed: (){}, child: Text('Order now',style: TextStyle(
+    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.restaurantView), child: Text('Order now',style: TextStyle(
         fontSize: FontSize.l,color: AppColor.primaryColor,fontWeight: FontWeight.bold
     ),));
   }
