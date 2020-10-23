@@ -128,6 +128,16 @@ class _RestaurantView extends State<RestaurantView> {
     );
   }
   _container() {
+    return Stack(children: [
+      Positioned(top: 5,
+          child: Container(
+        height: MediaQuery.of(context).size.shortestSide*0.3,
+        width: MediaQuery.of(context).size.shortestSide*2,
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(8),
+          color: Colors.red,
+        ),
+      ))
+    ],);
   }
 
 }
