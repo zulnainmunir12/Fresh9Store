@@ -112,9 +112,9 @@ class _AppServices extends State<AppServices> {
                         ),),),
                       Container(
                           margin: EdgeInsets.only(top: 30.0, bottom: 10.0,right: 75),
-                          child: _shopButton()),
+                          child: _otherShopButton(),
                       // Padding(padding: EdgeInsets.only(right: 70,top: 8),
-                      // child: _shopButton(),)
+                     )
                     ],
                   ),
                 ),
@@ -218,7 +218,7 @@ class _AppServices extends State<AppServices> {
     ),));
   }
   _otherShopButton(){
-    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.fresh9View)
+    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.shopsView)
         , child: Text('Shop now',style: TextStyle(
             fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
         ),));
@@ -229,7 +229,7 @@ class _AppServices extends State<AppServices> {
     ),));
   }
   _serviceButton(){
-    return FlatButton(onPressed: (){}, child:
+    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.servicesView), child:
     Text('Service now',style: TextStyle(
         fontSize: FontSize.m,color: AppColor.primaryColor,fontWeight: FontWeight.bold
     ),)

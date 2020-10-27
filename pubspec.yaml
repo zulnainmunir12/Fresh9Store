@@ -64,6 +64,10 @@ flutter:
     - assets/image/fresh9_home_view2.png
     - assets/image/polygon.svg
     - assets/image/restaurant_background.jpg
+    - assets/image/photographer.png
+    - assets/image/plumber.png
+    - assets/image/barber.png
+    - assets/image/electricion.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
