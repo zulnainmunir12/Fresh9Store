@@ -1,9 +1,13 @@
+import 'package:Product/ui/notification/notification.dart';
+import 'package:Product/ui/order/arrived-order.dart';
+import 'package:Product/ui/order/my_order.dart';
 import 'package:Product/ui/view/authentication/enter_number_view.dart';
 import 'package:Product/ui/view/homes_screens/app_services_view.dart';
 import 'package:Product/ui/view/homes_screens/fresh9_home_view.dart';
 import 'package:Product/ui/view/homes_screens/restaurant_home_view.dart';
 import 'package:Product/ui/view/homes_screens/services_view.dart';
 import 'package:Product/ui/view/homes_screens/shops_view.dart';
+import 'package:Product/ui/wallet/wallet_page.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/view/splash_screen_view.dart';
 import 'package:Product/ui/view/suggest_view.dart';
@@ -22,6 +26,10 @@ class NavigationRouter {
   static const String restaurantView ='RestaurantView';
   static const String shopsView = 'ShopsView';
   static const String servicesView = 'ServicesView';
+  static const String notificationScreen = 'NotificationScreen';
+  static const String myOrder = 'MyOrder';
+  static const String walletPage = 'WalletPage';
+  static const String arrivedOrder = 'ArrivedOrder';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -55,6 +63,14 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>ShopsView());
       case servicesView:
         return MaterialPageRoute(builder: (_)=>ServicesView());
+      case notificationScreen:
+        return MaterialPageRoute(builder: (_)=>NotificationScreen());
+      case myOrder:
+        return MaterialPageRoute(builder: (_)=>MyOrder());
+      case walletPage:
+        return MaterialPageRoute(builder: (_)=>WalletPage());
+      case arrivedOrder:
+        return MaterialPageRoute(builder: (_)=>ArrivedOrder());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

@@ -68,6 +68,7 @@ flutter:
     - assets/image/plumber.png
     - assets/image/barber.png
     - assets/image/electricion.png
+    - assets/image/order_emoji.png
   #   - images/a_dot_ham.jpeg
 
   # An image asset can refer to one or more resolution-specific "variants", see
