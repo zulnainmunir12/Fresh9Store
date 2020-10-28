@@ -52,7 +52,7 @@ class _AppServices extends State<AppServices> {
                  padding: const EdgeInsets.all(8.0),
                    child: Column(
                      children: [
-                       VerticalSpacing(height: 0.0001),
+                       VerticalSpacing(height: 0.01),
                        Image.asset('assets/image/fresh9_store.png'),
                        VerticalSpacing(height: 0.001),
                        Container(
@@ -95,7 +95,7 @@ class _AppServices extends State<AppServices> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      VerticalSpacing(height: 0.0001),
+                      VerticalSpacing(height: 0.01),
                       Image.asset('assets/image/other_shops.png'),
                       VerticalSpacing(height: 0.001),
                       Container(
@@ -143,7 +143,7 @@ class _AppServices extends State<AppServices> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      VerticalSpacing(height: 0.0001),
+                      VerticalSpacing(height: 0.01),
                       Image.asset('assets/image/restarunt.png'),
                       VerticalSpacing(height: 0.001),
                       Container(
@@ -183,7 +183,7 @@ class _AppServices extends State<AppServices> {
                   padding: const EdgeInsets.all(8.0),
                   child: Column(
                     children: [
-                      VerticalSpacing(height: 0.0001),
+                      VerticalSpacing(height: 0.01),
                       Image.asset('assets/image/services.png'),
                       VerticalSpacing(height: 0.001),
                       Container(
@@ -212,27 +212,35 @@ class _AppServices extends State<AppServices> {
     );
   }
   _shopButton(){
-    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.fresh9View)
-        , child: Text('Shop now',style: TextStyle(
-      fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
-    ),));
+    return InkWell(onTap: ()=> _navigationService.navigateTo(NavigationRouter.fresh9View),
+    child: Text(
+      'Shop now',style: TextStyle(
+      color: AppColor.primaryColor,fontSize: FontSize.xl,fontWeight: FontWeight.w500
+    ),
+    ),);
   }
   _otherShopButton(){
-    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.shopsView)
-        , child: Text('Shop now',style: TextStyle(
-            fontSize: FontSize.xl,color: AppColor.primaryColor,fontWeight: FontWeight.bold
-        ),));
+    return InkWell(onTap: ()=> _navigationService.navigateTo(NavigationRouter.shopsView),
+      child: Text(
+        'Shop now',style: TextStyle(
+          color: AppColor.primaryColor,fontSize: FontSize.xl,fontWeight: FontWeight.w500
+      ),
+      ),);
   }
   _orderButton(){
-    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.restaurantView), child: Text('Order now',style: TextStyle(
-        fontSize: FontSize.l,color: AppColor.primaryColor,fontWeight: FontWeight.bold
-    ),));
+    return InkWell(onTap: ()=> _navigationService.navigateTo(NavigationRouter.restaurantView),
+      child: Text(
+        'Order now',style: TextStyle(
+          color: AppColor.primaryColor,fontSize: FontSize.xl,fontWeight: FontWeight.w500
+      ),
+      ),);
   }
-  _serviceButton(){
-    return FlatButton(onPressed: ()=> _navigationService.navigateTo(NavigationRouter.servicesView), child:
-    Text('Service now',style: TextStyle(
-        fontSize: FontSize.m,color: AppColor.primaryColor,fontWeight: FontWeight.bold
-    ),)
-    );
-  }
+_serviceButton(){
+  return InkWell(onTap: ()=> _navigationService.navigateTo(NavigationRouter.servicesView),
+    child: Text(
+      'Service now',style: TextStyle(
+        color: AppColor.primaryColor,fontSize: FontSize.xl,fontWeight: FontWeight.w500
+    ),
+    ),);
+}
 }

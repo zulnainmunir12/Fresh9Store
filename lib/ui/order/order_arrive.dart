@@ -9,27 +9,17 @@ class ArrivedOrder extends StatefulWidget {
 }
 
 class _ArrivedOrder extends State<ArrivedOrder> {
-  List<Color> _colors = [
-    //Get list of colors
-    AppColor.whiteColor,
-    AppColor.secondaryColor,
-  ];
+  int selectedRadio;
 
-  int _currentIndex = 0;
+  void initState() {
+    super.initState();
+    selectedRadio = 0;
+  }
 
-  _onChanged() {
-    //update with a new color when the user taps button
-    int _colorCount = _colors.length;
-
+  setSelectedRadio(int val) {
     setState(() {
-      if (_currentIndex == _colorCount - 1) {
-        _currentIndex = 0;
-      } else {
-        _currentIndex += 1;
-      }
+      selectedRadio = val;
     });
-
-    //setState(() => (_currentIndex == _colorCount - 1) ? _currentIndex = 1 : _currentIndex += 1);
   }
 
   @override
@@ -52,7 +42,7 @@ class _ArrivedOrder extends State<ArrivedOrder> {
           VerticalSpacing(height: 0.03),
           Center(
             child: _container(),
-          )
+          ),
         ],
       ),
     );
@@ -73,7 +63,7 @@ class _ArrivedOrder extends State<ArrivedOrder> {
           child: Column(
             children: [
               VerticalSpacing(
-                height: 0.03,
+                height: 0.01,
               ),
               Text(
                 'Order No',
@@ -96,9 +86,12 @@ class _ArrivedOrder extends State<ArrivedOrder> {
                     fontWeight: FontWeight.w500,
                     fontSize: FontSize.xxl),
               ),
-              VerticalSpacing(height: 0.04),
-              Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [_orderButton(),_cancelButton()],
+              VerticalSpacing(height: 0.0),
+              _radioButton(),
+              VerticalSpacing(height: 0.0),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [_orderButton(), _cancelButton()],
               )
             ],
           ),
@@ -130,6 +123,21 @@ class _ArrivedOrder extends State<ArrivedOrder> {
               ),
               color: AppColor.whiteColor,
             )),
+      ),
+    );
+  }
+
+  _radioButton() {
+    return Padding(
+      padding: EdgeInsets.all(10),
+      child: RadioListTile(
+        value: 1,
+        groupValue: selectedRadio,
+        activeColor: AppColor.secondaryColor,
+        onChanged: (val) {
+          print("Radio $val");
+          setSelectedRadio(val);
+        },
       ),
     );
   }
