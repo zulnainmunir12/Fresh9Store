@@ -1,3 +1,7 @@
+import 'package:Product/core/service/navigation_service.dart';
+import 'package:Product/locator.dart';
+import 'package:Product/ui/order/my_order.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/widget/vertical_spacing.dart';
@@ -9,6 +13,7 @@ class ArrivedOrder extends StatefulWidget {
 }
 
 class _ArrivedOrder extends State<ArrivedOrder> {
+  final NavigationService _navigationService = locator<NavigationService>();
   int selectedRadio;
 
   void initState() {
@@ -31,6 +36,7 @@ class _ArrivedOrder extends State<ArrivedOrder> {
             Icons.arrow_back,
             color: AppColor.primaryColor,
           ),
+          onPressed: ()=>_navigationService.navigateTo(NavigationRouter.myOrder)
         ),
         title: Text(
           'My Orders',
@@ -114,7 +120,7 @@ class _ArrivedOrder extends State<ArrivedOrder> {
                   borderRadius: BorderRadius.all(
                 Radius.circular(30),
               )),
-              onPressed: () {},
+              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.placeOrder),
               padding: EdgeInsets.all(15.0),
               child: Text(
                 'View order',
@@ -130,15 +136,22 @@ class _ArrivedOrder extends State<ArrivedOrder> {
   _radioButton() {
     return Padding(
       padding: EdgeInsets.all(10),
-      child: RadioListTile(
-        value: 1,
-        groupValue: selectedRadio,
-        activeColor: AppColor.secondaryColor,
-        onChanged: (val) {
-          print("Radio $val");
-          setSelectedRadio(val);
-        },
-      ),
+      child:
+         Column(
+           children: [
+             RadioListTile(
+              value: 1,
+              groupValue: selectedRadio,
+              activeColor: AppColor.secondaryColor,
+              onChanged: (val) {
+                print("Radio $val");
+                setSelectedRadio(val);
+              },
+              title: Text('Accepted'),
+              selected: true,
+        ),
+           ],
+         ),
     );
   }
 

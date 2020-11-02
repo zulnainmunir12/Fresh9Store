@@ -1,6 +1,8 @@
 import 'package:Product/ui/notification/notification.dart';
 import 'package:Product/ui/order/order_arrive.dart';
 import 'package:Product/ui/order/my_order.dart';
+import 'package:Product/ui/order/place_order.dart';
+import 'package:Product/ui/order/recieved_order.dart';
 import 'package:Product/ui/view/authentication/enter_number_view.dart';
 import 'package:Product/ui/view/homes_screens/app_services_view.dart';
 import 'package:Product/ui/view/homes_screens/fresh9_home_view.dart';
@@ -30,6 +32,8 @@ class NavigationRouter {
   static const String myOrder = 'MyOrder';
   static const String walletPage = 'WalletPage';
   static const String arrivedOrder = 'ArrivedOrder';
+  static const String placeOrder ='PlaceOrder';
+  static const String receivedOrder = 'ReceivedOrder';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -71,6 +75,10 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>WalletPage());
       case arrivedOrder:
         return MaterialPageRoute(builder: (_)=>ArrivedOrder());
+      case placeOrder:
+        return MaterialPageRoute(builder: (_)=>PlaceOrder());
+      case receivedOrder:
+        return MaterialPageRoute(builder: (_)=>ReceivedOrder());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
