@@ -6,5 +6,5 @@ class FontSize {
   static const double xxl = 20;
   static const double xxxl = 22;
   static const double xxxxl = 24;
-  static const double xxxxxxl = 26;
+  static const double xxxxxxl = 40;
 }

@@ -1,15 +1,15 @@
-import 'package:Product/ui/notification/notification.dart';
-import 'package:Product/ui/order/order_arrive.dart';
-import 'package:Product/ui/order/my_order.dart';
-import 'package:Product/ui/order/place_order.dart';
-import 'package:Product/ui/order/recieved_order.dart';
+import 'package:Product/ui/view/notification_view.dart';
+import 'package:Product/ui/view/order/my_order_view.dart';
+import 'package:Product/ui/view/order/no_order_view.dart';
+import 'package:Product/ui/view/order/place_order.dart';
+import 'package:Product/ui/view/order/order_placed_view.dart';
 import 'package:Product/ui/view/authentication/enter_number_view.dart';
-import 'package:Product/ui/view/homes_screens/app_services_view.dart';
-import 'package:Product/ui/view/homes_screens/fresh9_home_view.dart';
-import 'package:Product/ui/view/homes_screens/restaurant_home_view.dart';
-import 'package:Product/ui/view/homes_screens/services_view.dart';
-import 'package:Product/ui/view/homes_screens/shops_view.dart';
-import 'package:Product/ui/wallet/wallet_page.dart';
+import 'package:Product/ui/view/home_screens/app_services_view.dart';
+import 'package:Product/ui/view/home_screens/fresh9_home_view.dart';
+import 'package:Product/ui/view/home_screens/restaurant_home_view.dart';
+import 'package:Product/ui/view/home_screens/services_view.dart';
+import 'package:Product/ui/view/home_screens/shops_view.dart';
+import 'package:Product/ui/view/wallet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/view/splash_screen_view.dart';
 import 'package:Product/ui/view/suggest_view.dart';
@@ -28,12 +28,12 @@ class NavigationRouter {
   static const String restaurantView ='RestaurantView';
   static const String shopsView = 'ShopsView';
   static const String servicesView = 'ServicesView';
-  static const String notificationScreen = 'NotificationScreen';
-  static const String myOrder = 'MyOrder';
-  static const String walletPage = 'WalletPage';
-  static const String arrivedOrder = 'ArrivedOrder';
-  static const String placeOrder ='PlaceOrder';
-  static const String receivedOrder = 'ReceivedOrder';
+  static const String notificationView = 'notificationView';
+  static const String myOrderView = 'myOrderView';
+  static const String walletView = 'walletView';
+  static const String noOrderView = 'noOrderView';
+  static const String orderPlacedView ='orderPlacedView';
+  static const String placeOrderView = 'placeOrderView';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -67,18 +67,18 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>ShopsView());
       case servicesView:
         return MaterialPageRoute(builder: (_)=>ServicesView());
-      case notificationScreen:
-        return MaterialPageRoute(builder: (_)=>NotificationScreen());
-      case myOrder:
-        return MaterialPageRoute(builder: (_)=>MyOrder());
-      case walletPage:
-        return MaterialPageRoute(builder: (_)=>WalletPage());
-      case arrivedOrder:
-        return MaterialPageRoute(builder: (_)=>ArrivedOrder());
-      case placeOrder:
+      case notificationView:
+        return MaterialPageRoute(builder: (_)=>NotificationView());
+      case noOrderView:
+        return MaterialPageRoute(builder: (_)=>NoOrderView());
+      case walletView:
+        return MaterialPageRoute(builder: (_)=>WalletView());
+      case myOrderView:
+        return MaterialPageRoute(builder: (_)=>MyOrderView());
+      case placeOrderView:
         return MaterialPageRoute(builder: (_)=>PlaceOrder());
-      case receivedOrder:
-        return MaterialPageRoute(builder: (_)=>ReceivedOrder());
+      case orderPlacedView:
+        return MaterialPageRoute(builder: (_)=>OrderPlacedView());
       default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

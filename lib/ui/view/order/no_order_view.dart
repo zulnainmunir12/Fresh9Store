@@ -7,11 +7,11 @@ import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class MyOrder extends StatefulWidget {
+class NoOrderView extends StatefulWidget {
   _MyOrder createState() => _MyOrder();
 }
 
-class _MyOrder extends State<MyOrder> {
+class _MyOrder extends State<NoOrderView> {
   final NavigationService _navigationService = locator<NavigationService>();
 
   @override
@@ -49,8 +49,9 @@ class _MyOrder extends State<MyOrder> {
               ],
             ),
           ),
-          VerticalSpacing(height: 0.3),
-          _shoppingButton()
+          Flexible(child: Container()),
+          _shoppingButton(),
+          VerticalSpacing(height: 0.05),
         ],
       ),
     );
@@ -71,7 +72,7 @@ class _MyOrder extends State<MyOrder> {
             ),
             child: FlatButton(
               color: AppColor.primaryColor,
-              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.arrivedOrder),
+              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.myOrderView),
               child: Text(
                 'START SHOPPING',
                 style: TextStyle(

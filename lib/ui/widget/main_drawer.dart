@@ -18,47 +18,51 @@ class _MainDrawer extends State<MainDrawer> {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: ListView(
+      child: Column(
         children: [
           Container(
               padding: EdgeInsets.all(16.0),
-              height: MediaQuery.of(context).size.height / 4.5,
               color: AppColor.primaryColor,
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Container(
-                    height: MediaQuery.of(context).size.height / 8.5,
-                    width: MediaQuery.of(context).size.width / 8.5,
-                    decoration: BoxDecoration(
-                        shape: BoxShape.circle, color: AppColor.whiteColor),
-                    child: Center(
-                      child: Text(
-                        'U',
-                        style: TextStyle(
-                            color: AppColor.primaryColor,
-                            fontSize: FontSize.xxxxxxl,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ),
+                  VerticalSpacing(height: 0.02),
+                  Row(
+                    children: [
+                      Container(
+                        height: 70,
+                        width: 70,
+                        decoration: BoxDecoration(
+                            shape: BoxShape.circle, color: AppColor.whiteColor),
+                        child: Center(
+                          child: Text(
+                            'U',
+                            style: TextStyle(
+                                color: AppColor.primaryColor,
+                                fontSize: FontSize.xxxxxxl,
+                                fontWeight: FontWeight.w500),
+                          ),
+                        ),
+                      )
+                    ],
                   ),
                   Text(
                     'Usman Sukhera',
                     style: TextStyle(
-                        fontSize: FontSize.xxl,
+                        fontSize: FontSize.l,
                         color: AppColor.whiteColor,
                         fontWeight: FontWeight.w500),
                   ),
                   Text(
                     'Usman1sukhera@gmail.com',
                     style: TextStyle(
-                      fontSize: FontSize.xxl,
+                      fontSize: FontSize.l,
                       color: AppColor.whiteColor,
                     ),
                   )
                 ],
               )),
-          Container(
+          Flexible(child: Container(
             margin: EdgeInsets.all(16.0),
             child: Column(
               mainAxisSize: MainAxisSize.max,
@@ -78,7 +82,7 @@ class _MainDrawer extends State<MainDrawer> {
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
                       onTap: () => _navigationService
-                          .navigateTo(NavigationRouter.myOrder),
+                          .navigateTo(NavigationRouter.myOrderView),
                     )
                   ],
                 ),
@@ -117,7 +121,7 @@ class _MainDrawer extends State<MainDrawer> {
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
                       onTap: () => _navigationService
-                          .navigateTo(NavigationRouter.walletPage),
+                          .navigateTo(NavigationRouter.walletView),
                     )
                   ],
                 ),
@@ -156,7 +160,7 @@ class _MainDrawer extends State<MainDrawer> {
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
                       onTap: () => _navigationService
-                          .navigateTo(NavigationRouter.notificationScreen),
+                          .navigateTo(NavigationRouter.notificationView),
                     )
                   ],
                 ),
@@ -194,7 +198,8 @@ class _MainDrawer extends State<MainDrawer> {
                         style: TextStyle(
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
-                      onTap: () {},
+                      onTap: () => _navigationService
+                          .navigateTo(NavigationRouter.suggestScreen),
                     )
                   ],
                 ),
@@ -236,28 +241,29 @@ class _MainDrawer extends State<MainDrawer> {
                     )
                   ],
                 ),
-                VerticalSpacing(height: 0.1),
+                Flexible(child: Container()),
                 Row(
                   children: [
                     Icon(
                       Icons.logout,
                       color: AppColor.primaryColor,
-                      size: 30,
+                      size: 28,
                     ),
                     HorizontalSpacing(width: 0.08),
                     InkWell(
                       child: Text(
                         'Logout',
                         style: TextStyle(
-                            color: AppColor.darkGrey, fontSize: FontSize.xxxl),
+                            color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
-                      onTap: () {},
+                      onTap: () => _navigationService
+                          .navigateTo(NavigationRouter.landingScreen),
                     )
                   ],
                 )
               ],
             ),
-          )
+          ))
         ],
       ),
     );

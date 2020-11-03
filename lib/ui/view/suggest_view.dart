@@ -1,13 +1,19 @@
 import 'dart:math';
 
+import 'package:Product/core/service/navigation_service.dart';
 import 'package:Product/ui/shared/app_colors.dart';
+import 'package:Product/ui/shared/font_size.dart';
 import 'package:flutter/material.dart';
+
+import '../../locator.dart';
 
 class SuggestView extends StatefulWidget {
   _SuggestViewState createState() => _SuggestViewState();
 }
 
 class _SuggestViewState extends State<SuggestView> {
+
+  final NavigationService _navigationService = locator<NavigationService>();
 
   @override
   Widget build(BuildContext context) {
@@ -16,11 +22,11 @@ class _SuggestViewState extends State<SuggestView> {
         backgroundColor: Colors.white,
         leading: IconButton(
           icon: Icon(Icons.arrow_back, color: AppColor.primaryColor),
-          onPressed: () {},
+          onPressed: () => _navigationService.goBack(),
         ),
         title: Text(
           'Suggestion',
-          style: TextStyle(color: Colors.black54, fontSize: 22),
+          style: TextStyle(color: Colors.black54, ),
         ),
       ),
       body: Container(
@@ -30,7 +36,7 @@ class _SuggestViewState extends State<SuggestView> {
             Center(
               child: Text(
                 "What's Your Suggestion",
-                style: TextStyle(color: Colors.black,fontSize: 24,fontWeight: FontWeight.w600),
+                style: TextStyle(color: Colors.black,fontSize: FontSize.xxl,),
               ),
             ),
             Padding(padding: EdgeInsets.all(20),
@@ -46,8 +52,7 @@ class _SuggestViewState extends State<SuggestView> {
                       const EdgeInsets.symmetric(vertical:18.0),
                       fillColor: Colors.white,
                       hintText: 'Suggest City ?',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 20),
+                      hintStyle: TextStyle(color: Colors.grey,fontSize: FontSize.l),
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                       child: Icon(
                         Icons.wb_incandescent_outlined,
@@ -78,8 +83,7 @@ class _SuggestViewState extends State<SuggestView> {
                       const EdgeInsets.symmetric(vertical:18.0),
                       fillColor: Colors.white,
                       hintText: 'Suggest Area ?',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 20),
+                      hintStyle: TextStyle(color: Colors.grey,fontSize: FontSize.l),
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,
@@ -110,8 +114,7 @@ class _SuggestViewState extends State<SuggestView> {
                       const EdgeInsets.symmetric(vertical:18.0),
                       fillColor: Colors.white,
                       hintText: 'Suggest Restaurant and Product ?',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 20),
+                      hintStyle: TextStyle(color: Colors.grey,fontSize: FontSize.l),
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,
@@ -142,8 +145,7 @@ class _SuggestViewState extends State<SuggestView> {
                       const EdgeInsets.symmetric(vertical:18.0),
                       fillColor: Colors.white,
                       hintText: 'Suggest Any More ?',
-                      hintStyle: TextStyle(
-                          fontWeight: FontWeight.bold, color: Colors.grey,fontSize: 20),
+                      hintStyle: TextStyle(color: Colors.grey,fontSize: FontSize.l),
                       prefixIcon: Transform.rotate(angle: 180 * pi / 180,
                         child: Icon(
                           Icons.wb_incandescent_outlined,

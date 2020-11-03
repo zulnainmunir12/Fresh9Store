@@ -8,11 +8,11 @@ import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class WalletPage extends StatefulWidget {
+class WalletView extends StatefulWidget {
   _WalletPage createState() => _WalletPage();
 }
 
-class _WalletPage extends State<WalletPage> {
+class _WalletPage extends State<WalletView> {
   final NavigationService _navigationService = locator<NavigationService>();
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,7 @@ class _WalletPage extends State<WalletPage> {
             Icons.arrow_back,
             color: AppColor.primaryColor,
           ),
-          onPressed: ()=>_navigationService.navigateTo(NavigationRouter.myOrder),
+          onPressed: ()=>_navigationService.goBack(),
         ),
         title: Text(
           'Wallet',
@@ -34,21 +34,21 @@ class _WalletPage extends State<WalletPage> {
         children: [
           VerticalSpacing(height: 0.03),
           Center(
-            child: _container(),
+            child: _itemCard(),
           )
         ],
       ),
     );
   }
 
-  _container() {
+  _itemCard() {
     return Material(
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
       elevation: 5.0,
       color: AppColor.blackColor,
       child: Container(
-        width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height / 3,
+        width: MediaQuery.of(context).size.width *0.9,
+//        height: MediaQuery.of(context).size.height / 3,
         decoration: BoxDecoration(
             color: AppColor.whiteColor,
             borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -63,7 +63,7 @@ class _WalletPage extends State<WalletPage> {
                     'PKR',
                     style: TextStyle(
                         color: AppColor.darkGrey,
-                        fontSize: FontSize.xxxxl,
+                        fontSize: FontSize.xl,
                         fontWeight: FontWeight.w500),
                   ),
                   RichText(
@@ -88,31 +88,31 @@ class _WalletPage extends State<WalletPage> {
               'Available Balance',
               style: TextStyle(
                   color: AppColor.darkGrey,
-                  fontSize: FontSize.xxxl,
+                  fontSize: FontSize.l,
                   fontWeight: FontWeight.w500),
             ),
-            VerticalSpacing(height: 0.04),
+            VerticalSpacing(height: 0.02),
             Padding(
-              padding: const EdgeInsets.all(30.0),
+              padding: const EdgeInsets.symmetric(horizontal:30.0),
               child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [Text('Vouchers',style: TextStyle(
                   color: AppColor.darkGrey,
-                  fontSize: FontSize.xxl,
+                  fontSize: FontSize.l,
                   fontWeight: FontWeight.w500
                 ),),
                 VerticalSpacing(height: 0.001),
-                Text('pkr 50.00',style: TextStyle(
+                Text('PKR 50.00',style: TextStyle(
                     color: AppColor.secondaryColor,
-                    fontSize: FontSize.l,
+                    fontSize: FontSize.m,
                     fontWeight: FontWeight.w500
                 ),),
                   VerticalSpacing(height: 0.001),
                 Text('Expire in 7 days',style: TextStyle(
                     color: AppColor.redColor,
-                    fontSize: FontSize.l,
+                    fontSize: FontSize.m,
                     fontWeight: FontWeight.w500
                 ),)],
               ),
@@ -120,23 +120,23 @@ class _WalletPage extends State<WalletPage> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [Text('Your Balance',style: TextStyle(
                       color: AppColor.darkGrey,
-                      fontSize: FontSize.xxl,
+                      fontSize: FontSize.l,
                       fontWeight: FontWeight.w500
                   ),),
                     VerticalSpacing(height: 0.001),
-                    Text('pkr 0.00',style: TextStyle(
+                    Text('PKR 0.00',style: TextStyle(
                         color: AppColor.secondaryColor,
-                        fontSize: FontSize.l,
+                        fontSize: FontSize.m,
                         fontWeight: FontWeight.w500
                     ),),
                     VerticalSpacing(height: 0.001),
                     Text('No Expiry',style: TextStyle(
                         color: AppColor.redColor,
-                        fontSize: FontSize.l,
+                        fontSize: FontSize.m,
                         fontWeight: FontWeight.w500
                     ),)],
                 )],),
-            )
+            ),VerticalSpacing(height: 0.02),
           ],
         ),
       ),

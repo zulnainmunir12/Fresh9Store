@@ -2,13 +2,12 @@ import 'package:Product/core/service/navigation_service.dart';
 import 'package:Product/locator.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/view/homes_screens/main_drawer.dart';
+import 'package:Product/ui/widget/main_drawer.dart';
+import 'package:Product/ui/widget/adverisement_card.dart';
 import 'package:Product/ui/widget/horizontal_spacing.dart';
 import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
-import 'package:polygon_clipper/polygon_clipper.dart';
 import 'package:shape_of_view/shape_of_view.dart';
 
 class Fresh9HomeView extends StatefulWidget {
@@ -42,7 +41,7 @@ class _Fresh9View extends State<Fresh9HomeView> {
                 onPressed: () {}),
             IconButton(
                 icon: Icon(
-                  Icons.add_shopping_cart,
+                  Icons.shopping_cart,
                   color: AppColor.primaryColor,
                 ),
                 onPressed: () {})
@@ -57,45 +56,49 @@ class _Fresh9View extends State<Fresh9HomeView> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.shortestSide * 0.43,
                   color: AppColor.lightestGrey.withOpacity(0.5),
-                  child: ListView(
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: [_Container(), _Container(), _Container()],
+                    itemCount: 10,
+                    itemBuilder: (BuildContext context, int index){
+                      return AdvertisementCard();
+                    },
                   ),
                 ),
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.shortestSide * 0.13,
-                  color: AppColor.lightestGrey.withOpacity(0.1),
-                  child: Padding(
-                    padding: const EdgeInsets.all(10.0),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Text(
-                          'Categories',
-                          style: TextStyle(
-                              color: AppColor.blackColor,
-                              fontSize: FontSize.xxl,
-                              fontWeight: FontWeight.w500),
-                        ),
-                        _viewAllButton()
-                      ],
+                Card(
+                  elevation: 3,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: 55,
+                    color: AppColor.whiteColor,
+                    child: Padding(
+                      padding: const EdgeInsets.all(10.0),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Text(
+                            'Categories',
+                            style: TextStyle(
+                                color: AppColor.blackColor,
+                                fontSize: FontSize.xxl,
+                                fontWeight: FontWeight.w500),
+                          ),
+                          _viewAllButton()
+                        ],
+                      ),
                     ),
                   ),
                 ),
                 Container(
-                  height: MediaQuery.of(context).size.shortestSide * 0.53,
+                  height: 235,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
-                  child: ListView(
+                  padding: EdgeInsets.only(left: 10),
+                  child: ListView.builder(
                     scrollDirection: Axis.horizontal,
-                    children: [
-                      _servicesContainer(),
-                      HorizontalSpacing(width: 0.01),
-                      _servicesContainer(),
-                      HorizontalSpacing(width: 0.01),
-                      _servicesContainer(),
-                    ],
+                    itemCount: 10,
+                    itemBuilder: (BuildContext context, int index) {
+                      return _servicesContainer();
+                    },
                   ),
                 ),
                 Padding(
@@ -104,7 +107,7 @@ class _Fresh9View extends State<Fresh9HomeView> {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Text(
-                            'Deal',
+                            'Deals',
                             style: TextStyle(
                                 color: AppColor.primaryColor,
                                 fontSize: FontSize.xxl,
@@ -114,20 +117,18 @@ class _Fresh9View extends State<Fresh9HomeView> {
                         ])),
                 VerticalSpacing(height: 0.01),
                 Container(
-                  height: MediaQuery.of(context).size.shortestSide * 0.73,
+                  height: 316,
                   width: MediaQuery.of(context).size.width,
                   color: Colors.white,
-                  child: ListView(
-                    scrollDirection: Axis.horizontal,
-                    children: [
-                      _cartContainer(),
-                      HorizontalSpacing(width: 0.01),
-                      _cartContainer(),
-                      HorizontalSpacing(width: 0.01),
-                      _cartContainer(),
-                    ],
-                  ),
+                  child: ListView.builder(
+                      scrollDirection: Axis.horizontal,
+                      itemCount: 10,
+                      padding: EdgeInsets.only(left: 10),
+                      itemBuilder: (BuildContext context, int index) {
+                        return _cartContainer();
+                      }),
                 ),
+                VerticalSpacing(height: 0.01),
               ],
             ),
           ],
@@ -167,27 +168,6 @@ class _Fresh9View extends State<Fresh9HomeView> {
     );
   }
 
-  _Container() {
-    return Padding(
-      padding: const EdgeInsets.all(8.0),
-      child: Container(
-        width: MediaQuery.of(context).size.shortestSide * 0.93,
-        decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(10.0),
-            color: AppColor.primaryColor),
-        child: Center(
-          child: Text(
-            'Ads',
-            style: TextStyle(
-                color: AppColor.whiteColor,
-                fontSize: FontSize.xxxxxxl,
-                fontWeight: FontWeight.bold),
-          ),
-        ),
-      ),
-    );
-  }
-
   _viewAllButton() {
     return ButtonTheme(
         minWidth: MediaQuery.of(context).size.shortestSide * 0.23,
@@ -208,106 +188,88 @@ class _Fresh9View extends State<Fresh9HomeView> {
   }
 
   _servicesContainer() {
-    return Material(
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.only(
-          bottomLeft: Radius.circular(100),
-          bottomRight: Radius.circular(100),
+    return Card(
+        elevation: 3,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(100),
+          ),
         ),
-        side: BorderSide(
-            width: 0.5, style: BorderStyle.solid, color: AppColor.whiteColor),
-      ),
-      elevation: 7,
-      child: Container(
-        height: MediaQuery.of(context).size.shortestSide / 1.3,
-        width: MediaQuery.of(context).size.shortestSide / 2.5,
-        decoration: BoxDecoration(
-            color: AppColor.whiteColor,
-            borderRadius: BorderRadius.only(
-                bottomLeft: Radius.circular(100),
-                bottomRight: Radius.circular(100))),
-        child: Column(
-          children: [
-            // VerticalSpacing(height: 0.01),
-            Center(
-              child: Image.asset(
-                'assets/image/fresh9_home_view.png',
-                height: 110,
-              ),
-            ),
-            VerticalSpacing(height: 0.01),
-            Center(
-              child: Text(
-                'Vegetables and Fruits',
-                style: TextStyle(
-                    color: AppColor.primaryColor, fontSize: FontSize.m),
-              ),
-            ),
-            VerticalSpacing(height: 000.01),
-            ShapeOfView(
-              shape: TriangleShape(
-                percentBottom: 0.5,
-                percentLeft: 0.1,
-                percentRight: 0.1,
-              ),
-              child: Container(
-                height: MediaQuery.of(context).size.height / 10,
-                width: MediaQuery.of(context).size.width / 4,
-                decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(
-                      topRight: Radius.circular(
-                        35,
-                      ),
-                      topLeft: Radius.circular(35),
-                    ),
-                    color: AppColor.primaryColor),
-                child: Center(
-                  child: Column(
-                    children: [
-                      VerticalSpacing(height: 0.02),
-                      Text(
-                        'Best',
-                        style: TextStyle(color: AppColor.whiteColor),
-                      ),
-                      Text(
-                        'Price',
-                        style: TextStyle(color: AppColor.whiteColor),
-                      ),
-                    ],
-                  ),
+        child: Container(
+          height: 100,
+          width: 140,
+          decoration: BoxDecoration(
+              color: AppColor.whiteColor,
+              borderRadius: BorderRadius.vertical(
+                bottom: Radius.circular(100),
+              )),
+          child: Column(
+            children: [
+              // VerticalSpacing(height: 0.01),
+              Center(
+                child: Image.asset(
+                  'assets/image/fresh9_home_view.png',
+//                height: 110,
                 ),
               ),
-            ),
-            // SvgPicture.asset('assets/image/polygon.svg',height: 50,width: 50,),
-          ],
-        ),
-      ),
-    );
+//            VerticalSpacing(height: 0.01),
+              Center(
+                child: Text(
+                  'Vegetables & Fruits',
+                  style: TextStyle(
+                      color: AppColor.primaryColor, fontSize: FontSize.m),
+                ),
+              ),
+              VerticalSpacing(height: 0.005),
+
+              ClipPath(
+                clipper: TriangleClipper(),
+                child: Container(
+                  height: 60,
+                  width: 80,
+                  decoration: BoxDecoration(color: AppColor.primaryColor),
+                  child: Center(
+                    child: Column(
+                      children: [
+                        Text(
+                          'Best',
+                          style: TextStyle(
+                              color: AppColor.whiteColor, fontSize: FontSize.s),
+                        ),
+                        Text(
+                          'Price',
+                          style: TextStyle(color: AppColor.whiteColor),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              )
+            ],
+          ),
+        ));
   }
 
   _cartContainer() {
-    return Material(
+    return Card(
+      elevation: 3,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(Radius.circular(20)),
-        side: BorderSide(style: BorderStyle.solid, color: AppColor.whiteColor),
-      ),
-      elevation: 7,
-      child: Container(
-        height: MediaQuery.of(context).size.height / 5,
-        width: MediaQuery.of(context).size.width / 2.2,
-        decoration: BoxDecoration(
-          color: AppColor.whiteColor,
-          borderRadius: BorderRadius.all(
-            Radius.circular(20),
-          ),
+        borderRadius: BorderRadius.circular(
+          15,
         ),
+      ),
+      child: Container(
+        height: 110,
+        width: 160,
+        decoration: BoxDecoration(
+            color: AppColor.whiteColor,
+            borderRadius: BorderRadius.circular(15)),
         child: Padding(
           padding: const EdgeInsets.all(10.0),
           child: Column(
             children: [
               Image.asset(
                 'assets/image/fresh9_home_view2.png',
-                height: 160,
               ),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
@@ -324,15 +286,15 @@ class _Fresh9View extends State<Fresh9HomeView> {
                         decoration: TextDecoration.lineThrough,
                         decorationColor: AppColor.darkGrey,
                         color: AppColor.darkGrey,
-                        fontSize: FontSize.xxl),
+                        fontSize: FontSize.xl),
                   ),
                   VerticalSpacing(height: 0.01),
                   Text(
                     'RS 140/1Unit',
                     style: TextStyle(
                         color: AppColor.primaryColor,
-                        fontSize: FontSize.xxl,
-                        fontWeight: FontWeight.w500),
+                        fontSize: FontSize.xl,
+                        fontWeight: FontWeight.bold),
                   ),
                 ],
               ),
@@ -359,9 +321,23 @@ class _Fresh9View extends State<Fresh9HomeView> {
             'Add to cart',
             style: TextStyle(
                 color: AppColor.greenColor,
-                fontSize: FontSize.xl,
+                fontSize: FontSize.l,
                 fontWeight: FontWeight.w500),
           ),
         ));
   }
+}
+
+class TriangleClipper extends CustomClipper<Path> {
+  @override
+  Path getClip(Size size) {
+    final path = Path();
+    path.lineTo(size.width, 0.0);
+    path.lineTo(size.width / 2, size.height);
+    path.close();
+    return path;
+  }
+
+  @override
+  bool shouldReclip(TriangleClipper oldClipper) => false;
 }

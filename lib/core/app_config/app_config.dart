@@ -11,7 +11,7 @@ class AppConfig extends ChangeNotifier {
         color: AppColor.primaryColor,
       ),
     ),
-    fontFamily: 'Raleway',
+    fontFamily: 'Segoe',
     scaffoldBackgroundColor: AppColor.backgroundColor,
     cursorColor: AppColor.darkGrey,
     textTheme: TextTheme(

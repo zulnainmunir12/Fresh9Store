@@ -51,7 +51,7 @@ class _PlaceOrder extends State<PlaceOrder> {
               color: AppColor.primaryColor,
             ),
             onPressed: () =>
-                _navigationService.navigateTo(NavigationRouter.arrivedOrder)),
+                _navigationService.navigateTo(NavigationRouter.myOrderView)),
         title: Text(
           'Place Order',
           style: TextStyle(color: AppColor.darkGrey),
@@ -62,17 +62,18 @@ class _PlaceOrder extends State<PlaceOrder> {
           Column(
             children: [
               VerticalSpacing(height: 0.03),
-              _container(),
+              _totalBillCard(),
               VerticalSpacing(height: 0.02),
-              _contactContainer(),
+              _contactCard(),
               VerticalSpacing(height: 0.02),
-              _deliveryContainer(),
+              _deliveryScheduleCard(),
               VerticalSpacing(height: 0.02),
-              _instructionContainer(),
+              _deliveryInstructionContainer(),
               VerticalSpacing(height: 0.02),
               _paymentContainer(),
               VerticalSpacing(height: 0.02),
-              _orderButton()
+              _orderButton(),
+              VerticalSpacing(height: 0.02),
             ],
           )
         ],
@@ -80,7 +81,7 @@ class _PlaceOrder extends State<PlaceOrder> {
     );
   }
 
-  _container() {
+  _totalBillCard() {
     return Material(
       elevation: 7,
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -115,14 +116,14 @@ class _PlaceOrder extends State<PlaceOrder> {
     );
   }
 
-  _contactContainer() {
+  _contactCard() {
     return Material(
       elevation: 7,
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
       color: AppColor.blackColor,
       child: Container(
         width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height / 2.9,
+//        height: MediaQuery.of(context).size.height / 2.9,
         decoration: BoxDecoration(
             color: AppColor.whiteColor,
             borderRadius: BorderRadius.all(Radius.circular(12.0))),
@@ -147,9 +148,7 @@ class _PlaceOrder extends State<PlaceOrder> {
                   color: AppColor.darkGrey,
                   size: 20,
                 ),
-                SizedBox(
-                  width: 30.0,
-                ),
+
                 new Flexible(
                   child: new TextField(
                     decoration: InputDecoration(
@@ -160,14 +159,13 @@ class _PlaceOrder extends State<PlaceOrder> {
                     ),
                   ),
                 ),
+                HorizontalSpacing(width: 0.02,),
                 Icon(
                   Icons.phone,
                   color: AppColor.darkGrey,
                   size: 20,
                 ),
-                SizedBox(
-                  width: 35.0,
-                ),
+
                 new Flexible(
                   child: new TextField(
                       decoration: InputDecoration(
@@ -196,23 +194,22 @@ class _PlaceOrder extends State<PlaceOrder> {
                 ),
                 HorizontalSpacing(width: 0.02),
                 SizedBox(
-                  width: 330,
-                  child: new Flexible(
-                    child: new TextField(
+                  width: 250,
+                  child:  TextField(
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             hintText: 'usman1sukhera@gmail.com',
                             hintStyle: TextStyle(
                                 color: AppColor.darkGrey,
                                 fontSize: FontSize.xl))),
-                  ),
+
                 ),
               ],
             ),
             VerticalSpacing(height: 0.02),
             Container(
-              width: MediaQuery.of(context).size.width / 1.2,
-              height: MediaQuery.of(context).size.height / 300,
+              width: MediaQuery.of(context).size.width *0.85,
+              height: 1,
               decoration: BoxDecoration(color: AppColor.darkGrey),
             ),
             VerticalSpacing(height: 0.01),
@@ -234,9 +231,7 @@ class _PlaceOrder extends State<PlaceOrder> {
                   color: AppColor.darkGrey,
                   size: 20,
                 ),
-                SizedBox(
-                  width: 30.0,
-                ),
+
                 new Flexible(
                   child: new TextField(
                     decoration: InputDecoration(
@@ -247,14 +242,13 @@ class _PlaceOrder extends State<PlaceOrder> {
                     ),
                   ),
                 ),
+                HorizontalSpacing(width: 0.02),
                 Icon(
                   Icons.apartment_sharp,
                   color: AppColor.darkGrey,
                   size: 20,
                 ),
-                SizedBox(
-                  width: 35.0,
-                ),
+
                 new Flexible(
                   child: new TextField(
                       decoration: InputDecoration(
@@ -283,26 +277,26 @@ class _PlaceOrder extends State<PlaceOrder> {
                 ),
                 HorizontalSpacing(width: 0.02),
                 SizedBox(
-                  width: 330,
-                  child: new Flexible(
-                    child: new TextField(
+                  width: 300,
+                  child:  TextField(
                         decoration: InputDecoration(
                             contentPadding: EdgeInsets.all(6),
                             hintText: 'Central park housing scheme',
                             hintStyle: TextStyle(
                                 color: AppColor.darkGrey,
                                 fontSize: FontSize.xl))),
-                  ),
+
                 ),
               ],
             ),
+            VerticalSpacing(height: 0.02)
           ],
         ),
       ),
     );
   }
 
-  _deliveryContainer() {
+  _deliveryScheduleCard() {
     return Material(
       elevation: 7,
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
@@ -453,14 +447,13 @@ class _PlaceOrder extends State<PlaceOrder> {
     );
   }
 
-  _instructionContainer() {
+  _deliveryInstructionContainer() {
     return Material(
       elevation: 7,
       borderRadius: BorderRadius.all(Radius.circular(12.0)),
       color: AppColor.blackColor,
       child: Container(
         width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height / 8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           color: AppColor.whiteColor,
@@ -499,6 +492,7 @@ class _PlaceOrder extends State<PlaceOrder> {
                     fillColor: AppColor.whiteColor),
               ),
             ),
+            VerticalSpacing(height: 0.02),
           ],
         ),
       ),
@@ -512,7 +506,6 @@ class _PlaceOrder extends State<PlaceOrder> {
       color: AppColor.blackColor,
       child: Container(
         width: MediaQuery.of(context).size.width / 1.1,
-        height: MediaQuery.of(context).size.height / 8,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(12.0)),
           color: AppColor.whiteColor,
@@ -533,6 +526,7 @@ class _PlaceOrder extends State<PlaceOrder> {
               padding: EdgeInsets.all(8.0),
               child: Row(
                 children: [
+
                   Icon(
                     Icons.payments_outlined,
                     color: AppColor.darkGrey,
@@ -600,7 +594,7 @@ class _PlaceOrder extends State<PlaceOrder> {
             ),
             child: FlatButton(
               color: AppColor.primaryColor,
-              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.receivedOrder),
+              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.orderPlacedView),
               child: Text(
                 'PLACE ORDER',
                 style: TextStyle(

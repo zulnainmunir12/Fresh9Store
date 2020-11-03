@@ -6,11 +6,11 @@ import 'package:Product/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class ReceivedOrder extends StatefulWidget {
+class OrderPlacedView extends StatefulWidget {
   _ReceivedOrder createState() => _ReceivedOrder();
 }
 
-class _ReceivedOrder extends State<ReceivedOrder> {
+class _ReceivedOrder extends State<OrderPlacedView> {
   final NavigationService _navigationService = locator<NavigationService>();
 
   @override
@@ -24,7 +24,7 @@ class _ReceivedOrder extends State<ReceivedOrder> {
               'Your',
               style: TextStyle(
                   color: AppColor.redColor,
-                  fontSize: FontSize.xxxxxxl,
+                  fontSize: FontSize.xxxl,
                   fontWeight: FontWeight.w400),
             ),
           ),
@@ -33,7 +33,7 @@ class _ReceivedOrder extends State<ReceivedOrder> {
               'Order has been',
               style: TextStyle(
                   color: AppColor.redColor,
-                  fontSize: FontSize.xxxxxxl,
+                  fontSize: FontSize.xxxl,
                   fontWeight: FontWeight.w400),
             ),
           ),
@@ -42,20 +42,23 @@ class _ReceivedOrder extends State<ReceivedOrder> {
               'placed',
               style: TextStyle(
                   color: AppColor.redColor,
-                  fontSize: FontSize.xxxxxxl,
+                  fontSize: FontSize.xxxl,
                   fontWeight: FontWeight.w400),
             ),
           ),
           VerticalSpacing(height: 0.02),
           Center(
-            child: Image.asset('assets/image/smile_emoji.png',height: 300,),
+            child: Image.asset(
+              'assets/image/smile_emoji.png',
+              height: 300,
+            ),
           ),
           Center(
             child: Text(
               'Your order no is.',
               style: TextStyle(
                   color: AppColor.redColor,
-                  fontSize: FontSize.xxxxl,
+                  fontSize: FontSize.xxxl,
                   fontWeight: FontWeight.w500),
             ),
           ),
@@ -64,21 +67,22 @@ class _ReceivedOrder extends State<ReceivedOrder> {
               '1234567',
               style: TextStyle(
                   color: AppColor.redColor,
-                  fontSize: FontSize.xxxxl,
+                  fontSize: FontSize.xxxl,
                   fontWeight: FontWeight.w500),
             ),
           ),
-          VerticalSpacing(height: 0.2),
-          _okButton()
+          Flexible(child: Container()),
+          _okButton(),
+          VerticalSpacing(height: 0.05),
         ],
       ),
     );
   }
+
   _okButton() {
     return ButtonTheme(
-        minWidth: MediaQuery.of(context).size.width/1.1,
-        child:
-        Material(
+        minWidth: MediaQuery.of(context).size.width / 1.1,
+        child: Material(
           elevation: 7.0,
           borderRadius: BorderRadius.circular(10.0),
           color: AppColor.blackColor,
@@ -98,7 +102,6 @@ class _ReceivedOrder extends State<ReceivedOrder> {
               ),
             ),
           ),
-        )
-    );
+        ));
   }
 }
