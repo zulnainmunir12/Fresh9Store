@@ -1,5 +1,6 @@
 import 'package:Product/core/service/navigation_service.dart';
 import 'package:Product/locator.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/widget/main_drawer.dart';
@@ -265,7 +266,7 @@ class _Fresh9View extends State<Fresh9HomeView> {
             color: AppColor.whiteColor,
             borderRadius: BorderRadius.circular(15)),
         child: Padding(
-          padding: const EdgeInsets.all(10.0),
+          padding: const EdgeInsets.all(8.0),
           child: Column(
             children: [
               Image.asset(
@@ -288,7 +289,7 @@ class _Fresh9View extends State<Fresh9HomeView> {
                         color: AppColor.darkGrey,
                         fontSize: FontSize.xl),
                   ),
-                  VerticalSpacing(height: 0.01),
+                  // VerticalSpacing(height: 0.01),
                   Text(
                     'RS 140/1Unit',
                     style: TextStyle(
@@ -313,14 +314,14 @@ class _Fresh9View extends State<Fresh9HomeView> {
         minWidth: MediaQuery.of(context).size.shortestSide * 0.27,
         child: OutlineButton(
           shape: new RoundedRectangleBorder(
-            side: BorderSide(color: AppColor.greenColor),
+            side: BorderSide(color: AppColor.primaryColor),
             borderRadius: new BorderRadius.circular(10.0),
           ),
-          onPressed: () {},
+          onPressed: () => _navigationService.navigateTo(NavigationRouter.cartView),
           child: Text(
             'Add to cart',
             style: TextStyle(
-                color: AppColor.greenColor,
+                color: AppColor.secondaryColor,
                 fontSize: FontSize.l,
                 fontWeight: FontWeight.w500),
           ),

@@ -1,3 +1,8 @@
+import 'package:Product/ui/view/address/add_addres.dart';
+import 'package:Product/ui/view/address/address_view.dart';
+import 'package:Product/ui/view/address/your_address.dart';
+import 'package:Product/ui/view/cart/cart_view.dart';
+import 'package:Product/ui/view/cart/checkout.dart';
 import 'package:Product/ui/view/notification_view.dart';
 import 'package:Product/ui/view/order/my_order_view.dart';
 import 'package:Product/ui/view/order/no_order_view.dart';
@@ -9,6 +14,8 @@ import 'package:Product/ui/view/home_screens/fresh9_home_view.dart';
 import 'package:Product/ui/view/home_screens/restaurant_home_view.dart';
 import 'package:Product/ui/view/home_screens/services_view.dart';
 import 'package:Product/ui/view/home_screens/shops_view.dart';
+import 'package:Product/ui/view/profile/edit_profile.dart';
+import 'package:Product/ui/view/profile/profile.dart';
 import 'package:Product/ui/view/wallet_view.dart';
 import 'package:flutter/material.dart';
 import 'package:Product/ui/view/splash_screen_view.dart';
@@ -34,6 +41,13 @@ class NavigationRouter {
   static const String noOrderView = 'noOrderView';
   static const String orderPlacedView ='orderPlacedView';
   static const String placeOrderView = 'placeOrderView';
+  static const String profile = 'Profile';
+  static const String editProfile = 'EditProfile';
+  static const String addAddress = "AddAddress";
+  static const String addressView = 'AddressView';
+  static const String yourAddress ='YourAddress';
+  static const String cartView = 'CartView';
+  static const String checkOut = 'CheckOut';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -79,7 +93,21 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>PlaceOrder());
       case orderPlacedView:
         return MaterialPageRoute(builder: (_)=>OrderPlacedView());
-      default:
+      case profile:
+        return MaterialPageRoute(builder: (_)=>Profile());
+      case editProfile:
+        return MaterialPageRoute(builder: (_)=>EditProfile());
+      case addAddress:
+        return MaterialPageRoute(builder: (_)=>AddAddress());
+      case addressView:
+        return MaterialPageRoute(builder: (_)=>AddressView());
+      case yourAddress:
+        return MaterialPageRoute(builder: (_)=>YourAddress());
+      case cartView:
+        return MaterialPageRoute(builder: (_)=>CartView());
+      case checkOut:
+        return MaterialPageRoute(builder: (_)=>CheckOut());
+        default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(
             body: Center(

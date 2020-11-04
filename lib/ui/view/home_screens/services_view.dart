@@ -88,14 +88,6 @@ class _ServicesView extends State<ServicesView> {
               },
             ),
           ),
-//              VerticalSpacing(height: 0.01),
-//              _photography(),
-//              VerticalSpacing(height: 0.01),
-//              _electrician(),
-//              VerticalSpacing(height: 0.01),
-//              _plumber(),
-//              VerticalSpacing(height: 0.01),
-//              _barber()
         ],
       ),
     );

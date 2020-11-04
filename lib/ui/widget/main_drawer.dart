@@ -101,7 +101,8 @@ class _MainDrawer extends State<MainDrawer> {
                         style: TextStyle(
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
-                      onTap: () {},
+                      onTap: () => _navigationService
+                          .navigateTo(NavigationRouter.profile),
                     )
                   ],
                 ),
@@ -140,7 +141,7 @@ class _MainDrawer extends State<MainDrawer> {
                         style: TextStyle(
                             color: AppColor.darkGrey, fontSize: FontSize.xxl),
                       ),
-                      onTap: () {},
+                      onTap: () => _navigationService.navigateTo(NavigationRouter.addAddress),
                     )
                   ],
                 ),
