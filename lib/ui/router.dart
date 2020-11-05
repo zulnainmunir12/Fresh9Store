@@ -3,6 +3,10 @@ import 'package:Product/ui/view/address/address_view.dart';
 import 'package:Product/ui/view/address/your_address.dart';
 import 'package:Product/ui/view/cart/cart_view.dart';
 import 'package:Product/ui/view/cart/checkout.dart';
+import 'package:Product/ui/view/category/vegetables_fruits.dart';
+import 'package:Product/ui/view/electrician_view.dart';
+import 'package:Product/ui/view/home_screens/karachi_biryani.dart';
+import 'file:///C:/Users/Zuni/IdeaProjects/Product/lib/ui/view/category/gategories.dart';
 import 'package:Product/ui/view/notification_view.dart';
 import 'package:Product/ui/view/order/my_order_view.dart';
 import 'package:Product/ui/view/order/no_order_view.dart';
@@ -48,6 +52,10 @@ class NavigationRouter {
   static const String yourAddress ='YourAddress';
   static const String cartView = 'CartView';
   static const String checkOut = 'CheckOut';
+  static const String categories = 'Categories';
+  static const String vegetablesFruits = 'VegetablesFruits';
+  static const String electrician = 'Electrician';
+  static const String karachiBiryani = 'KarachiBiryani';
 
   static Route<dynamic> generateRoute(RouteSettings settings) {
     switch (settings.name) {
@@ -107,6 +115,14 @@ class NavigationRouter {
         return MaterialPageRoute(builder: (_)=>CartView());
       case checkOut:
         return MaterialPageRoute(builder: (_)=>CheckOut());
+      case categories:
+        return MaterialPageRoute(builder: (_)=>Categories());
+      case vegetablesFruits:
+        return MaterialPageRoute(builder: (_)=>VegetablesFruits());
+      case electrician:
+        return MaterialPageRoute(builder: (_)=>Electrician());
+      case karachiBiryani:
+        return MaterialPageRoute(builder: (_)=>KarachiBiryani());
         default:
         return MaterialPageRoute(
           builder: (_) => Scaffold(

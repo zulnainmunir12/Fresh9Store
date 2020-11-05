@@ -177,7 +177,7 @@ class _Fresh9View extends State<Fresh9HomeView> {
             side: BorderSide(color: AppColor.lightestGrey),
             borderRadius: new BorderRadius.circular(10.0),
           ),
-          onPressed: () {},
+          onPressed: () => _navigationService.navigateTo(NavigationRouter.categories),
           child: Text(
             'View all',
             style: TextStyle(

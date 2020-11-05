@@ -1,3 +1,6 @@
+import 'package:Product/core/service/navigation_service.dart';
+import 'package:Product/locator.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/widget/main_drawer.dart';
@@ -12,6 +15,7 @@ class RestaurantView extends StatefulWidget {
 }
 
 class _RestaurantView extends State<RestaurantView> {
+  final NavigationService _navigationService = locator<NavigationService>();
   final List<String> _dropDownValues = [
     'Restaurant',
     'Fresh9',
@@ -40,7 +44,7 @@ class _RestaurantView extends State<RestaurantView> {
                 Icons.add_shopping_cart,
                 color: AppColor.primaryColor,
               ),
-              onPressed: () {})
+            onPressed: ()=> _navigationService.navigateTo(NavigationRouter.karachiBiryani),)
         ],
       ),
       body: Column(

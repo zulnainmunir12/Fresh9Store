@@ -1,3 +1,6 @@
+import 'package:Product/core/service/navigation_service.dart';
+import 'package:Product/locator.dart';
+import 'package:Product/ui/router.dart';
 import 'package:Product/ui/shared/app_colors.dart';
 import 'package:Product/ui/shared/font_size.dart';
 import 'package:Product/ui/widget/main_drawer.dart';
@@ -12,6 +15,7 @@ class ServicesView extends StatefulWidget {
 }
 
 class _ServicesView extends State<ServicesView> {
+  final NavigationService _navigationService = locator<NavigationService>();
   final List<String> _dropDownValues = [
     'Services',
     'Fresh9',
@@ -185,7 +189,7 @@ class _ServicesView extends State<ServicesView> {
           new Spacer(), // I just added one line
           IconButton(
             icon: Icon(Icons.navigate_next, color: AppColor.primaryColor),
-            onPressed: () {},
+            onPressed: () =>_navigationService.navigateTo(NavigationRouter.electrician),
           ) // This Icon
         ],
       ),

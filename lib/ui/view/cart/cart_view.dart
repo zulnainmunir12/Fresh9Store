@@ -200,7 +200,7 @@ class _CartView extends State<CartView> {
           children: [
             Row(
               children: [
-                Image.asset('lettuce.png'),
+                // Image.asset('lettuce.png'),
                 HorizontalSpacing(width: 0.2),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
