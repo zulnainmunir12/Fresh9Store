@@ -1,6 +1,6 @@
-# Product
+# fresh9_rider
 
-A new Flutter project.
+Fresh9 Rider
 
 ## Getting Started
 

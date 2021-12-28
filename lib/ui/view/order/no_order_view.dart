@@ -1,9 +1,9 @@
-import 'package:Product/core/service/navigation_service.dart';
-import 'package:Product/locator.dart';
-import 'package:Product/ui/router.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/vertical_spacing.dart';
+import 'package:fresh9_rider/core/service/navigation_service.dart';
+import 'package:fresh9_rider/locator.dart';
+import 'package:fresh9_rider/ui/router.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
+import 'package:fresh9_rider/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
@@ -23,7 +23,7 @@ class _MyOrder extends State<NoOrderView> {
             Icons.arrow_back,
             color: AppColor.primaryColor,
           ),
-          onPressed: ()=>_navigationService.navigateTo(NavigationRouter.shopsView),
+          onPressed: ()=>_navigationService.goBack(),
         ),
         title: Text(
           'My Orders',
@@ -38,13 +38,13 @@ class _MyOrder extends State<NoOrderView> {
               children: [
                 Image.asset(
                   'assets/image/order_emoji.png',
-                  height: 200,
+                  height: 150,
                 ),
                 VerticalSpacing(height: 0.02),
                 Text(
                   'No orders yet',
                   style: TextStyle(
-                      color: AppColor.darkGrey, fontSize: FontSize.xxxxxxl),
+                      color: AppColor.darkGrey, fontSize: FontSize.xxxxl),
                 )
               ],
             ),
@@ -72,7 +72,7 @@ class _MyOrder extends State<NoOrderView> {
             ),
             child: FlatButton(
               color: AppColor.primaryColor,
-              onPressed: ()=>_navigationService.navigateTo(NavigationRouter.myOrderView),
+              onPressed: ()=>_navigationService.navigateToAndClearAll(NavigationRouter.appServices),
               child: Text(
                 'START SHOPPING',
                 style: TextStyle(

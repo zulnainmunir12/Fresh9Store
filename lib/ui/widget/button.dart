@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/my_text.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
 
 class MyButton extends StatelessWidget {
   final String text;
@@ -12,6 +11,7 @@ class MyButton extends StatelessWidget {
   final double verticalSpacing;
   final double borderRadius;
   final double width;
+  final double height;
 
   MyButton(
       {@required this.text,
@@ -21,23 +21,44 @@ class MyButton extends StatelessWidget {
       this.star = true,
       this.verticalSpacing = 10,
       this.borderRadius = 20,
-      this.width});
+      this.width,
+      this.height});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       width: width == null ? MediaQuery.of(context).size.width : width,
+      height: height == null ? 45 : height,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[300].withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: Offset(0, -2), // changes position of shadow
+            ),
+          ]),
+
+      // ignore: deprecated_member_use
       child: RaisedButton(
-        child: MyText(
+        splashColor: Colors.red.shade50,
+        highlightColor: Colors.red.shade50,
+        child: Text(
           text,
           style: TextStyle(
             color: AppColor.primaryColor,
             fontSize: FontSize.xl,
-            fontWeight: FontWeight.w400,
+            fontWeight: FontWeight.w600,
           ),
         ),
-        padding: EdgeInsets.symmetric(vertical: verticalSpacing),
+//        padding: EdgeInsets.symmetric(vertical: verticalSpacing),
         color: backColor,
+
         elevation: 4,
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(borderRadius),
@@ -73,16 +94,33 @@ class SocialMediaButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      height: 45,
       width: width == null ? MediaQuery.of(context).size.width : width,
+      decoration: BoxDecoration(
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(15),
+              topRight: Radius.circular(15),
+              bottomLeft: Radius.circular(10),
+              bottomRight: Radius.circular(10)),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.grey[300].withOpacity(0.5),
+              spreadRadius: 1,
+              blurRadius: 3,
+              offset: Offset(0, -2), // changes position of shadow
+            ),
+          ]),
       child: RaisedButton(
+        splashColor: Colors.red.shade50,
+        highlightColor: Colors.red.shade50,
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Image.asset(
               image,
-              height: MediaQuery.of(context).size.shortestSide * 0.06,
+              height: MediaQuery.of(context).size.shortestSide * 0.04,
             ),
-            MyText(
+            Text(
               text,
               style: TextStyle(
                 color: AppColor.blackColor,
@@ -92,7 +130,7 @@ class SocialMediaButton extends StatelessWidget {
             ),
           ],
         ),
-        padding: EdgeInsets.symmetric(vertical: verticalSpacing),
+//        padding: EdgeInsets.symmetric(vertical: verticalSpacing),
         color: backColor,
         elevation: 4,
         shape: RoundedRectangleBorder(

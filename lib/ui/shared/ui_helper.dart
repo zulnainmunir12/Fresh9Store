@@ -1,17 +1,17 @@
 
 import 'package:flutter/material.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/my_text.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
+import 'package:fresh9_rider/ui/widget/my_text.dart';
 import 'package:encrypt/encrypt.dart' as Encrypt;
 
 class UIHelper {
   static const double borderRadius = 4.0;
   static const double screenPadding = 0.05;
 
-//  static String noConnection = T.Please_Check_Your_Internet_Connection;
-//  static String sthWentWrong = T.Oops_Something_Went_Wrong;
-//  static String timeOut = T.Server_not_Responding_pls_try_again;
+  static String noConnection = "Please Check Your Internet Connection";
+  static String sthWentWrong = "Oops Something Went Wrong";
+  static String timeOut = "Server not Responding pls try again";
 //  static String sthWentWrongPayment = T.Payment_issue;
 
   static String permissionDenied = "Permission Denied";

@@ -1,14 +1,22 @@
-import 'package:Product/core/service/navigation_service.dart';
-import 'package:Product/locator.dart';
-import 'package:Product/ui/router.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/main_drawer.dart';
-import 'package:Product/ui/widget/adverisement_card.dart';
-import 'package:Product/ui/widget/horizontal_spacing.dart';
-import 'package:Product/ui/widget/vertical_spacing.dart';
+import 'package:fresh9_rider/core/enums/enums.dart';
+import 'package:fresh9_rider/core/model/store_model.dart';
+import 'package:fresh9_rider/core/service/navigation_service.dart';
+import 'package:fresh9_rider/core/viewmodel/restuarants_view_model.dart';
+import 'package:fresh9_rider/locator.dart';
+import 'package:fresh9_rider/ui/router.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
+import 'package:fresh9_rider/ui/shared/loading.dart';
+import 'package:fresh9_rider/ui/widget/customAppbar.dart';
+import 'package:fresh9_rider/ui/widget/error_view.dart';
+import 'package:fresh9_rider/ui/widget/main_drawer.dart';
+import 'package:fresh9_rider/ui/widget/adverisement_card.dart';
+import 'package:fresh9_rider/ui/widget/vertical_spacing.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:stacked/stacked.dart';
 
 class RestaurantView extends StatefulWidget {
   _RestaurantView createState() => _RestaurantView();
@@ -17,78 +25,129 @@ class RestaurantView extends StatefulWidget {
 class _RestaurantView extends State<RestaurantView> {
   final NavigationService _navigationService = locator<NavigationService>();
   final List<String> _dropDownValues = [
-    'Restaurant',
+    'Restaurants',
     'Fresh9',
-    'OtherShops',
+    'Shops',
     'Services'
   ];
-  String _currentlySelected = '';
+  String _currentlySelected;
+
+  onModelReady(RestuarantsViewModel model) {
+//    model.getAds("");
+  }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: MainDrawer(),
-      appBar: AppBar(
-        title: Center(
-          child: _dropDrownWidget(),
-        ),
-        actions: [
-          IconButton(
-              icon: Icon(
-                Icons.search,
-                color: AppColor.primaryColor,
-              ),
-              onPressed: () {}),
-          IconButton(
-              icon: Icon(
-                Icons.add_shopping_cart,
-                color: AppColor.primaryColor,
-              ),
-            onPressed: ()=> _navigationService.navigateTo(NavigationRouter.karachiBiryani),)
-        ],
-      ),
-      body: Column(
-        children: [
-          Container(
-            margin: EdgeInsets.symmetric(vertical: 0.0),
-            width: MediaQuery.of(context).size.width,
-            height: MediaQuery.of(context).size.shortestSide * 0.43,
-            color: AppColor.lightestGrey.withOpacity(0.5),
-            child: ListView.builder(
-              scrollDirection: Axis.horizontal,
-              itemCount: 10,
-              itemBuilder: (BuildContext context, int index) {
-                return AdvertisementCard();
-              },
-            ),
-          ),
-          VerticalSpacing(height: 0.03),
-          Center(
-            child: Text(
-              'All Restaurant',
-              style: TextStyle(
-                  fontWeight: FontWeight.w500,
-                  fontSize: FontSize.xxl,
-                  color: AppColor.blackColor),
-            ),
-          ),
-          VerticalSpacing(height: 0.02),
-          Flexible(
-            child: Container(
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage(
-                            'assets/image/restaurant_background.jpg'),
-                        fit: BoxFit.cover)),
-                child: ListView.builder(
-                  itemCount: 10,
-                  itemBuilder: (BuildContext context, int index) {
-                    return _itemCard();
-                  },
-                )),
-          )
-        ],
-      ),
+    return ViewModelBuilder.reactive(
+      viewModelBuilder: () => RestuarantsViewModel(),
+      onModelReady: (model) => onModelReady(model),
+      builder: (context, RestuarantsViewModel model, child) {
+        return Scaffold(
+            drawer: MainDrawer(),
+            appBar: customAppBar(model.itemCount, 'restuarant', model,
+                search: false),
+            body: model.state == ViewState.loading
+                ? Loading.normalLoading()
+                : model.state == ViewState.error
+                    ? ErrorView(
+                        text: model.serverError,
+                        onPressed: () => model.determinePosition(),
+                      )
+                    : (model.stores.length == 0
+                        ? Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: CarouselSlider(
+                                  options: CarouselOptions(
+                                    autoPlayInterval: Duration(seconds: 3),
+                                    autoPlay: true,
+                                    initialPage: 0,
+                                    viewportFraction: 0.9,
+                                    height: MediaQuery.of(context)
+                                            .size
+                                            .shortestSide *
+                                        0.43,
+                                  ),
+                                  items: model.banners.map((i) {
+                                    return Builder(
+                                      builder: (BuildContext context) {
+                                        return AdvertisementCard(i);
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                                color: Colors.grey[300],
+                              ),
+                              Flexible(
+                                  child: Center(
+                                      child: Column(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Icon(
+                                    Icons.search,
+                                    size: 60,
+                                  ),
+                                  Text("Coming to your area soon.")
+                                ],
+                              )))
+                            ],
+                          )
+                        : Column(
+                            children: [
+                              Container(
+                                padding: EdgeInsets.symmetric(vertical: 8),
+                                child: CarouselSlider(
+                                  options: CarouselOptions(
+                                    autoPlayInterval: Duration(seconds: 3),
+                                    autoPlay: true,
+                                    initialPage: 0,
+                                    viewportFraction: 0.9,
+                                    height: MediaQuery.of(context)
+                                            .size
+                                            .shortestSide *
+                                        0.43,
+                                  ),
+                                  items: model.banners.map((i) {
+                                    return Builder(
+                                      builder: (BuildContext context) {
+                                        return AdvertisementCard(i);
+                                      },
+                                    );
+                                  }).toList(),
+                                ),
+                                color: Colors.grey[300],
+                              ),
+                              VerticalSpacing(height: 0.03),
+                              Center(
+                                child: Text(
+                                  'All Restaurant',
+                                  style: TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: FontSize.xxl,
+                                      color: AppColor.blackColor),
+                                ),
+                              ),
+                              VerticalSpacing(height: 0.02),
+                              Flexible(
+                                child: Container(
+                                    decoration: BoxDecoration(
+                                        image: DecorationImage(
+                                            image: AssetImage(
+                                                'assets/image/restaurant_background.jpg'),
+                                            fit: BoxFit.cover)),
+                                    child: ListView.builder(
+                                      itemCount: model.stores.length,
+                                      itemBuilder:
+                                          (BuildContext context, int index) {
+                                        return _itemCard(
+                                            model.stores[index], model);
+                                      },
+                                    )),
+                              )
+                            ],
+                          )));
+      },
     );
   }
 
@@ -108,16 +167,24 @@ class _RestaurantView extends State<RestaurantView> {
             setState(() {
               _currentlySelected = value;
             });
+            if (value == "Fresh9")
+              _navigationService.navigateTo(NavigationRouter.fresh9View);
+            else if (value == "Restaurants")
+              _navigationService.navigateTo(NavigationRouter.restaurantView);
+            else if (value == "Shops")
+              _navigationService.navigateTo(NavigationRouter.shopsView);
+            else
+              _navigationService.navigateTo(NavigationRouter.servicesView);
           },
           isExpanded: false,
-          value: _dropDownValues.first,
+          value: _currentlySelected,
           hint: Text(
-            'Restaurant',
-            style:
-                TextStyle(color: AppColor.blackColor, fontSize: FontSize.xxxl),
+            'Choose Option',
+//            style:
+//            TextStyle(color: AppColor.blackColor, fontSize: FontSize.xxxl),
           ),
           icon: Icon(
-            Icons.arrow_drop_down,
+            Icons.keyboard_arrow_down,
             color: AppColor.primaryColor,
           ),
         ),
@@ -125,8 +192,58 @@ class _RestaurantView extends State<RestaurantView> {
     );
   }
 
-  _itemCard() {
-    return Container(
+  _itemCard(StoreModel storeModel, RestuarantsViewModel model) {
+    return InkWell(
+      onTap: () async {
+        if (storeModel.breakStatus) {
+          Dialog errorDialog = Dialog(
+            shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0)), //this right here
+            child: Container(
+              height: 200.0,
+              width: MediaQuery.of(context).size.width,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 15),
+                    child: Text(
+                      'This store isn\'t available at the moment',
+                      style: TextStyle(
+                          fontSize: FontSize.xl, fontWeight: FontWeight.bold),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    child: Text(
+                      'Kindly try again in while. Thanks',
+                      style: TextStyle(color: Colors.grey),
+                      textAlign: TextAlign.center,
+                    ),
+                  ),
+                  Padding(padding: EdgeInsets.only(top: 20.0)),
+                  Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                    RaisedButton(
+                        color: AppColor.primaryColor,
+                        onPressed: () {
+                          Navigator.of(context).pop(true);
+                        },
+                        child: Text(
+                          'Okay!',
+                          style: TextStyle(color: Colors.white),
+                        )),
+                  ])
+                ],
+              ),
+            ),
+          );
+          await showDialog(
+              context: context, builder: (BuildContext context) => errorDialog);
+        } else
+          model.navigateToStore(storeModel.id);
+      },
       child: Column(
         children: [
           VerticalSpacing(height: 0.01),
@@ -139,14 +256,26 @@ class _RestaurantView extends State<RestaurantView> {
                 decoration: BoxDecoration(
                     color: AppColor.primaryColor,
                     borderRadius: BorderRadius.circular(10.0)),
+                child: storeModel.imageUrl == null
+                    ? null
+                    : ClipRRect(
+                        borderRadius: BorderRadius.circular(10),
+                        child: CachedNetworkImage(
+                          imageUrl: storeModel.imageUrl,
+                          placeholder: (context, url) => Loading.imageLoading(),
+                          errorWidget: (context, url, error) =>
+                              Image.asset("assets/image/placeholder.jpeg"),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
               ),
               Positioned(
                   top: 120,
-                  left: 15,
-                  right: 15,
+                  left: 5,
+                  right: 5,
                   child: Card(
                     child: Container(
-                      height: 80,
+                      height: 86,
                       padding: EdgeInsets.only(left: 10),
                       width: MediaQuery.of(context).size.width,
                       decoration: BoxDecoration(
@@ -158,21 +287,22 @@ class _RestaurantView extends State<RestaurantView> {
                         children: [
                           VerticalSpacing(height: 0.005),
                           Text(
-                            'Karachi biryani - Central Park',
+                            storeModel.storeName,
                             style: TextStyle(
-                                color: AppColor.darkGrey,
+                                color: AppColor.blackColor,
                                 fontSize: FontSize.xxl),
                           ),
                           VerticalSpacing(height: 0.005),
                           Text(
-                            "Biryani, Berger, shawarma, naan",
+                            storeModel.subTitle,
                             style: TextStyle(
                                 color: AppColor.darkGrey, fontSize: FontSize.m),
                           ),
                           VerticalSpacing(height: 0.005),
                           RichText(
                             text: TextSpan(
-                                text: 'Rs 200',
+                                text:
+                                    'Rs ' + storeModel.minimumOrder.toString(),
                                 style: TextStyle(
                                     color: AppColor.darkGrey,
                                     fontSize: FontSize.s),
@@ -184,7 +314,8 @@ class _RestaurantView extends State<RestaurantView> {
                                               .withOpacity(0.4),
                                           fontSize: FontSize.s)),
                                   TextSpan(
-                                      text: ' | Rs 30',
+                                      text: ' | Rs ' +
+                                          storeModel.deliveryFee.toString(),
                                       style: TextStyle(
                                           color: AppColor.darkGrey,
                                           fontSize: FontSize.s)),
@@ -195,7 +326,10 @@ class _RestaurantView extends State<RestaurantView> {
                                               .withOpacity(0.4),
                                           fontSize: FontSize.s)),
                                   TextSpan(
-                                      text: ' | Restaurant Own delivery',
+                                      text: ' | ' +
+                                          (storeModel.ownDelivery
+                                              ? 'Own delivery'
+                                              : 'Delivered by Fresh9'),
                                       style: TextStyle(
                                           color: AppColor.darkGrey,
                                           fontSize: FontSize.s)),

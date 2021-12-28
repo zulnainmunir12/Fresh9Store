@@ -1,12 +1,15 @@
-import 'package:Product/core/service/navigation_service.dart';
-import 'package:Product/locator.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/vertical_spacing.dart';
+import 'package:fresh9_rider/core/service/navigation_service.dart';
+import 'package:fresh9_rider/locator.dart';
+import 'package:fresh9_rider/ui/router.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
+import 'package:fresh9_rider/ui/widget/vertical_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class OrderPlacedView extends StatefulWidget {
+  String orderId;
+  OrderPlacedView(this.orderId);
   _ReceivedOrder createState() => _ReceivedOrder();
 }
 
@@ -64,7 +67,7 @@ class _ReceivedOrder extends State<OrderPlacedView> {
           ),
           Center(
             child: Text(
-              '1234567',
+              widget.orderId.substring(0,8),
               style: TextStyle(
                   color: AppColor.redColor,
                   fontSize: FontSize.xxxl,
@@ -92,6 +95,10 @@ class _ReceivedOrder extends State<OrderPlacedView> {
               borderRadius: BorderRadius.all(Radius.circular(10.0)),
             ),
             child: FlatButton(
+              onPressed: () {
+                _navigationService
+                    .navigateToAndClearAll(NavigationRouter.appServices);
+              },
               color: AppColor.primaryColor,
               child: Text(
                 'OKAY',

@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:Product/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
 
 class AppConfig extends ChangeNotifier {
   final ThemeData themeData = ThemeData(
@@ -14,6 +14,7 @@ class AppConfig extends ChangeNotifier {
     fontFamily: 'Segoe',
     scaffoldBackgroundColor: AppColor.backgroundColor,
     cursorColor: AppColor.darkGrey,
+    primarySwatch: Colors.red,
     textTheme: TextTheme(
       bodyText1: TextStyle(
         color: AppColor.blackColor,

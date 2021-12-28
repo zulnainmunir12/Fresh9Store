@@ -1,10 +1,8 @@
-import 'package:Product/core/service/navigation_service.dart';
-import 'package:Product/locator.dart';
-import 'package:Product/ui/router.dart';
-import 'package:Product/ui/shared/app_colors.dart';
-import 'package:Product/ui/shared/font_size.dart';
-import 'package:Product/ui/widget/horizontal_spacing.dart';
-import 'package:Product/ui/widget/vertical_spacing.dart';
+import 'package:fresh9_rider/core/service/navigation_service.dart';
+import 'package:fresh9_rider/locator.dart';
+import 'package:fresh9_rider/ui/shared/app_colors.dart';
+import 'package:fresh9_rider/ui/shared/font_size.dart';
+import 'package:fresh9_rider/ui/widget/horizontal_spacing.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
